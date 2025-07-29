@@ -1,0 +1,50 @@
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  1) Komanda të Git-it Lokale (në kompjuterin tënd)
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  2) Komanda	Përshkrimi
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  3) git init	Krijon një repo (repository) të re git në një direktori lokale.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  4) git clone <url>	Shkarkon një repo ekzistuese nga GitHub (ose nga një burim tjetër) lokal.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  5) git status	Tregon gjendjen aktuale të skedarëve në repo (modifikime, të papërgatitura, etj).
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  6) git add <file>	Shton një skedar specifik në "staging area" për kommit.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  7) git add .	Shton të gjithë skedarët e ndryshuar në "staging".
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  8) git commit -m "mesazh"	Bën një commit të ndryshimeve të shtuara me një mesazh.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200  9) git log	Shfaq historinë e commits në rend zbritës.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 10) git diff	Tregon ndryshimet mes skedarëve të modifikuar dhe versionit të fundit.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 11) git reset	Heq ndryshimet nga staging area.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 12) git reset --hard <commit>	Kthen projektin në një commit specifik dhe i fshin ndryshimet.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 13) git checkout <branch>	Ndërron në një branch tjetër.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 14) git checkout -b <emër>	Krijon një branch të ri dhe kalon në të.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 15) git merge <branch>	Bashkon një branch tjetër me branch-in aktual.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 16) git stash	Ruaj përkohësisht ndryshimet pa i kommituar.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 17) git stash pop	Rikthen ndryshimet e ruajtura me stash.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 18) 🔁 Komunikimi me një repo në GitHub
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 19) Komanda	Përshkrimi
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 20) git remote add origin <url>	Lidh repo lokale me repo në GitHub.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 21) git remote -v	Tregon URL-të e repo-ve të lidhura.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 22) git push -u origin main	Shtyn branch-in main në repo-n në GitHub (herën e parë).
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 23) git push	Dërgon commits në branch-in përkatës në GitHub.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 24) git pull	Merr ndryshimet më të fundit nga GitHub në branch-in lokal.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 25) git fetch	Merr të gjitha ndryshimet nga repo-ja pa i bashkuar (merge) automatikisht.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 26) git push origin <branch>	Shtyn një branch të caktuar në GitHub.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 27) git pull origin <branch>	Merr ndryshimet nga një branch specifik në GitHub.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 28) 🌿 Komanda për Menaxhimin e Branch-eve
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 29) Komanda	Përshkrimi
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 30) git branch	Liston të gjitha branch-et.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 31) git branch <emër>	Krijon një branch të ri.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 32) git branch -d <emër>	Fshin një branch lokal.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 33) git checkout -b <emër>	Krijon dhe kalon në një branch të ri.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 34) git merge <emër>	Bashkon një branch me branch-in aktiv.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 35) git rebase <emër>	Ribazon (rebase) branch-in aktual me atë që zgjodhe.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 36) 🧪 Komanda të Avancuara (opsionale)
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 37) Komanda	Përshkrimi
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 38) git revert <commit>	Krijon një commit të ri që anulon ndryshimet e një commit-i të mëparshëm.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 39) git cherry-pick <commit>	Merr një commit të veçantë nga një branch tjetër dhe e aplikon në tëndin.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 40) git tag <emër>	Krijon një tag (zakonisht për versione të reja).
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 41) git blame <file>	Tregon historinë e ndryshimeve për çdo rresht në një skedar.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 42) 💻 Komanda të GitHub CLI (GitHub Command Line Interface)
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 43) 
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 44) (nuk janë pjesë e Git-it por përdoren në GitHub CLI nëse e instalon)
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 45) Komanda	Përshkrimi
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 46) gh auth login	Lidhu me llogarinë tënde në GitHub.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 47) gh repo create	Krijon një repository të ri në GitHub nga terminali.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 48) gh pr create	Krijon një pull request nga një branch.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 49) gh pr status	Tregon statusin e pull request-eve.
+3221bcce (seladin_qejvani 2025-07-03 14:26:34 +0200 50) gh issue create	Krijon një issue të re në një repo në GitHub.
