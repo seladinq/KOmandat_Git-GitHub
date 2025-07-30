@@ -4,6 +4,16 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>React Documentation </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                display: flex;}
+           main {
+                flex: 1;
+                padding: 20px;
+            }
+        </style>
     </head>
     <body>
         <nav>
@@ -39,7 +49,7 @@
                     <li><a href="#">Incremental Adoption</a></li>
                     <li><a href="#">Debugging and Troubleshooting</a></li>
                 </ul>
-            </details>
+            </details><hr>
             <div class="section-title">LEARN REACT</div>
             <details>
                 <summary>Describing the UI</summary>
@@ -93,5 +103,57 @@
                 </ul>
             </details>
         </nav>
+        <nav class="sidebar">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Creating and nesting components </a></li>
+                <li><a href="#">Writing markup with JSX </a></li>
+                <li><a href="#">Adding styles </a></li>
+                <li><a href="#">Displaying data </a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Quick Start</h1>
+            <p>Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.</p>
+            <div>
+                <h3>You will learn</h3>
+                <ul>
+                    <li>How to create and nest components</li>
+                    <li>How to add markup and styles</li>
+                    <li>How to display data</li>
+                    <li>How to render conditions and lists</li>
+                    <li>How to respond to events and update the screen</li>
+                    <li>How to share data between components </li>
+                </ul>
+            </div>
+            <h1>Creating and nesting components </h1>
+            <p>React apps are made out of components. A component is a piece of the UI (user interface) that has its own<br>
+               logic and appearance. A component can be as small as a button, or as large as an entire page.</p>
+               <p>React components are JavaScript functions that return markup:</p>
+        <pre>
+            <code>
+                function MyButton() {
+                    return (
+                        &lt;button&gt;I'm a button&lt;/button&gt;
+                    );
+                  }
+            </code>
+        </pre>
+        <p>Now that you ve declared MyButton, you can nest it into another component:</p>
+        <pre>
+            <code>
+                export default function MyApp() {
+                    return (
+                      &lt;div&gt;
+                      &lt;h1&gt;Welcome to my app&lt;/h1&gt;
+                      &lt;MyButton /&gt;
+                      &lt;/div&gt;
+                    );
+                  }
+            </code>
+        </pre>
+        </main>
+        
     </body>
 </html>
