@@ -150,8 +150,38 @@
                  All of the tools we recommend for local development support JSX out of the box.</p>
         <p>
             JSX is stricter than HTML. You have to close tags like &lt;br /&gt;. 
-            Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent, like a &lt;div&gt;...&lt;/div&gt; or an empty &lt;&gt;...&lt;/&gt; wrapper:
+            Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent,
+             like a &lt;div&gt;...&lt;/div&gt; or an empty &lt;&gt;...&lt;/&gt; wrapper:
         </p>
+        <pre>
+            <code>
+                function AboutPage() {
+                    return (
+                        &lt;&gt;
+                        &lt;h1&gt;About&lt;/h1&gt;
+                        &lt;p&gt;Hello there.&lt;br /&gt;How do you do?&lt;/p&gt;
+                        &lt;/&gt;
+                    );
+                  }
+            </code>
+        </pre>
+        <p>If you have a lot of HTML to port to JSX, you can use an online converter.</p>
+        <h1>Adding styles  </h1>
+        <p>In React, you specify a CSS class with className. It works the same way as the HTML class attribute:</p>
+        <pre>
+            <code>
+                &lt;img className="avatar" /&gt;
+            </code>
+        </pre>
+        <p>Then you write the CSS rules for it in a separate CSS file:</p>
+        <pre>
+            <code>
+                /* In your CSS */
+                .avatar {
+                  border-radius: 50%;
+                }
+            </code>
+        </pre>
         </main>
         <nav class="sidebar">
             <h3>On this page</h3>
