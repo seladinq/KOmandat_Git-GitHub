@@ -22,10 +22,22 @@
                 padding: 15px;
                 background-color: #f0f0f0;
                 box-sizing: border-box;
-                height: 100hv;
+                height: 100vh;
                 overflow-y: auto;
                 z-index: 1000;
             }
+            aside{
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: #f0f0f0;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+            
         </style>
     </head>
     <body>
@@ -159,12 +171,12 @@
         <p>Notice that &lt;MyButton /&gt; starts with a capital letter. That’s how you know it’s a React component. 
             React component names<br> must always start with a capital letter, while HTML tags must be lowercase.</p>
             <h1 id="Writing_markup_with_JSX">Writing markup with JSX </h1>
-        <p>The markup syntax you’ve seen above is called JSX. It is optional, but most React projects use JSX for its convenience.
+        <p>The markup syntax you’ve seen above is called JSX. It is optional, but most React projects use JSX for its convenience.<br>
                  All of the tools we recommend for local development support JSX out of the box.</p>
         <p>
             JSX is stricter than HTML. You have to close tags like &lt;br /&gt;. 
             Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent,
-             like a &lt;div&gt;...&lt;/div&gt; or an empty &lt;&gt;...&lt;/&gt; wrapper:
+             like a &lt;div&gt;<br>...&lt;/div&gt; or an empty &lt;&gt;...&lt;/&gt; wrapper:
         </p>
         <pre>
             <code>
@@ -196,7 +208,8 @@
             </code>
         </pre>
         <p>React does not prescribe how you add CSS files. In the simplest case, you’ll add a
-             &lt;link&gt; tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.</p>
+             &lt;link&gt; tag to your HTML. If you use a build tool or a framework, consult its documentation <br>
+             to learn how to add a CSS file to your project.</p>
         </main>
         <aside>
             <h3>On this page</h3>
