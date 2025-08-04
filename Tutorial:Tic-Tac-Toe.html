@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>React Documentation </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                display: flex;}
+            main {
+                margin-left: 310px;
+                flex: 1;
+                padding: 20px;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 300px;
+                padding: 15px;
+                background-color: #f0f0f0;
+                box-sizing: border-box;
+                height: 100vh;
+                overflow-y: auto;
+                z-index: 1000;
+            }
+            aside{
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: #f0f0f0;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="section-title">GET STARTED</div>
+            <details>
+                <summary><a href="file:///home/tiranait4/Documents/REACT_DEV/REACT_DOC.html" >Quick Start</a></summary>
+                <ul>
+                    <li><a href="#">Tutorial: Tic-Tac-Toe</a></li>
+                    <li><a href="#">Thinking in React</a></li>
+                </ul>
+            </details> 
+            <details>
+                <summary>Installation</summary>
+                <ul>
+                    <li><a href="#">Creating a React App</a></li>
+                    <li><a href="#">Build a React App from Scratch</a></li>
+                    <li><a href="#">Add React to an Existing Project</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Setup</summary>
+                <ul>
+                    <li><a href="#">Editor Setup</a></li>
+                    <li><a href="#">Using TypeScrip</a></li>
+                    <li><a href="#">React Developers Tools</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>React Compiler</summary>
+                <ul>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Incremental Adoption</a></li>
+                    <li><a href="#">Debugging and Troubleshooting</a></li>
+                </ul>
+            </details><hr>
+            <div class="section-title">LEARN REACT</div>
+            <details>
+                <summary>Describing the UI</summary>
+                <ul>
+                    <li><a href="#">Your First Component</a></li>
+                    <li><a href="#">Importing and Exporting Components</a></li>
+                    <li><a href="#">Writing Markup with JSX</a></li>
+                    <li><a href="#">JavaScript in JSX with Curly Braces</a></li>
+                    <li><a href="#">Passing Props to a Component</a></li>
+                    <li><a href="#">Conditional Rendering</a></li>
+                    <li><a href="#">Rendering Lists</a></li>
+                    <li><a href="#">Keeping Components Pure</a></li>
+                    <li><a href="#">Your UI as a Tree</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Adding Interactivity</summary>
+                <ul>
+                    <li><a href="#">Responding to Events</a></li>
+                    <li><a href="#">State: A Component's Memory</a></li>
+                    <li><a href="#">Render and Commit</a></li>
+                    <li><a href="#">State as a Snapshot</a></li>
+                    <li><a href="#">Queueing a Series of State Updates</a></li>
+                    <li><a href="#">Updating Objects in State</a></li>
+                    <li><a href="#">Updating Arrays in State</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Managing State</summary>
+                <ul>
+                    <li><a href="#">Reacting to Input with State</a></li>
+                    <li><a href="#">Choosing the State Structure </a></li>
+                    <li><a href="#">Sharing State Between Components</a></li>
+                    <li><a href="#">Preserving and Resetting State</a></li>
+                    <li><a href="#">Extracting State Logic into a Reducer</a></li>
+                    <li><a href="#">Passing Data Deeply with Context</a></li>
+                    <li><a href="#">Scaling Up with Reducer and Context</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Escape Hatches</summary>
+                <ul>
+                    <li><a href="#">Referencing Values with Refs</a></li>
+                    <li><a href="#">Manipulating the DOM with Refs</a></li>
+                    <li><a href="#">Synchronizing with Effect</a></li>
+                    <li><a href="#">You Might Not Need an Effect</a></li>
+                    <li><a href="#">Lifecycle of Reactive Effect</a></li>
+                    <li><a href="#">Separating Events from Effects</a></li>
+                    <li><a href="#">Removing Effect Dependencies</a></li>
+                    <li><a href="#">Reusing Logic with Custom Hooks</a></li>
+                </ul>
+            </details>
+        </nav>
+        <main>
+            <h1 id="quick_start">Quick Start</h1>
+            <p>Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.</p>
+           
+        </main>
+        <aside>
+          <h3>On this page</h3>
+          <ul>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#what_are_you_building">What are you building?</a></li>
+              <li><a href="#setup_for_the_tutorial">Setup for the tutorial</a></li>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#inspecting_the_starter_code">Inspecting the starter code</a></li>
+              <li><a href="#building_the_board">Building the board</a></li>
+              <li><a href="#passing_data_through_props">Passing data through props</a></li>
+              <li><a href="#making_an_interactive_component">Making an interactive component</a></li>
+              <li><a href="#react_developer_tools">React Developer Tools</a></li>
+              <li><a href="#completing_the_game">Completing the game</a></li>
+              <li><a href="#lifting_state_up">Lifting state up</a></li>
+              <li><a href="#why_immutability_is_important">Why immutability is important</a></li>
+              <li><a href="#taking_turns">Taking turns</a></li>
+              <li><a href="#declaring_a_winner">Declaring a winner</a></li>
+              <li><a href="#adding_time_travel">Adding time travel</a></li>
+              <li><a href="#storing_a_history_of_moves">Storing a history of moves</a></li>
+              <li><a href="#lifting_state_up_again">Lifting state up, again</a></li>
+              <li><a href="#showing_the_past_moves">Showing the past moves</a></li>
+              <li><a href="#picking_a_key">Picking a key</a></li>
+              <li><a href="#implementing_time_travel">Implementing time travel</a></li>
+              <li><a href="#final_cleanup">Final cleanup</a></li>
+              <li><a href="#wrapping_up">Wrapping up</a></li>
+          </ul>
+      </aside>
+      
+    </body>
+</html>
