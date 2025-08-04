@@ -210,7 +210,7 @@
         <p>React does not prescribe how you add CSS files. In the simplest case, you’ll add a
              &lt;link&gt; tag to your HTML. If you use a build tool or a framework, consult its documentation <br>
              to learn how to add a CSS file to your project.</p>
-        <h1>Displaying data </h1>
+        <h1 id="Displaying_data">Displaying data </h1>
         <p>JSX lets you put markup into JavaScript. Curly braces let you “escape back” into JavaScript so that you can<br>
              embed some variable from your code and display it to the user. For example, this will display user.name:</p>
              <pre>
@@ -242,7 +242,7 @@
         <p>You can put more complex expressions inside the JSX curly braces too, for example, string concatenation:</p>
         <p>In the above example, style={{}} is not a special syntax, but a regular {} object inside the style={ } JSX<br>
              curly braces. You can use the style attribute when your styles depend on JavaScript variables.</p>
-        <h1>Conditional rendering</h1>   
+        <h1 id="Conditional_rendering">Conditional rendering</h1>   
         <p>In React, there is no special syntax for writing conditions. Instead, you’ll use the same techniques as you use<br>
              when writing regular JavaScript code. For example, you can use an if statement to conditionally include JSX:</p>
              <pre>
@@ -283,7 +283,7 @@
         </pre>
         <p>All of these approaches also work for conditionally specifying attributes. 
             If you’re unfamiliar with some of this<br> JavaScript syntax, you can start by always using if...else.</p>
-        <h1>Rendering lists </h1>
+        <h1 id="Rendering_lists">Rendering lists </h1>
         <p>You will rely on JavaScript features like for loop and the array map() function to render lists of components.</p>  
         <p>For example, let’s say you have an array of products:</p> 
         <pre>
@@ -313,7 +313,7 @@
              that item among its siblings. Usually, 
             a key should be coming from your data, such as a database ID. <br>
             React uses your keys to know what happened if you later insert, delete, or reorder the items.</p>
-        <h1>
+        <h1 id="Responding_to_events">
             Responding to events 
         </h1>
         <p>You can respond to events by declaring event handler functions inside your components:</p>
@@ -334,7 +334,7 @@
         </pre>
         <p>Notice how onClick={handleClick} has no parentheses at the end! Do not call the event handler function: you<br>
              only need to pass it down. React will call your event handler when the user clicks the button.</p>
-        <h1>Updating the screen </h1>
+        <h1 id="Updating_the_screen">Updating the screen </h1>
         <p>Often, you’ll want your component to “remember” some information and display it. For example, 
             maybe you <br>want to count the number of times a button is clicked. To do this, add state to your component.</p>
         <p>First, import useState from React:</p>
@@ -373,14 +373,126 @@
         <p>React will call your component function again. This time, count will be 1. Then it will be 2. And so on.</p>
         <p>If you render the same component multiple times, each will get its own state. Click each button separately:</p>
         <p>Notice how each button “remembers” its own count state and doesn’t affect other buttons.</p>
-        <h1>Using Hooks</h1>
+
+        <h1 id="Using_Hooks">Using Hooks</h1>
+
         <p>Functions starting with use are called Hooks. useState is a built-in Hook provided by React. You can find<br>
              other built-in Hooks in the API reference. You can also write your own Hooks by combining the existing ones.</p>
         <p>Hooks are more restrictive than other functions. You can only call Hooks at the top of your components (or<br>
              other Hooks). If you want to use useState in a condition or a loop, extract a new component and put it there.</p>     
-        <h1>Sharing data between components </h1> 
+        <h1 id="Sharing_data_between_components">Sharing data between components </h1> 
         <p>In the previous example, each MyButton had its own independent count, and when each button was clicked, <br>
-            only the count for the button clicked changed:</p>    
+            only the count for the button clicked changed:</p> 
+        <div style="display: flex;justify-content: left; gap: 20px;">
+        <figure>
+            <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_child.png&w=640&q=75"
+             alt="Initially, each MyButton’s count state is 0" style="width: 300px; height: 300px;">
+             <figcaption>
+                Initially, each MyButton’s count state is 0
+             </figcaption>
+
+        </figure>  
+        <figure>
+            <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_child_clicked.png&w=640&q=75"
+             alt="The first MyButton updates its count to 1" style="width: 300px; height: 300px;">
+             <figcaption>
+                The first MyButton updates its count to 1
+             </figcaption>
+
+        </figure>  
+        </div>
+        <p>However, often you’ll need components to share data and always update together.
+        </p>
+        <p>To make both MyButton components display the same count and update together, you need to move the <br>
+            state from the individual buttons “upwards” to the closest component containing all of them.</p>
+        <p>In this example, it is MyApp:</p>    
+        <div style="display: flex;justify-content: left; gap: 20px;">
+            <figure>
+                <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_parent.png&w=640&q=75"
+                 alt="Initially, MyApp’s count state is 0 and is passed down to both children" style="width: 300px; height: 300px;">
+                 <figcaption>
+                    Initially, MyApp’s count state is 0 and<br> is passed down to both children
+                 </figcaption>
+    
+            </figure>  
+            <figure>
+                <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_parent_clicked.png&w=640&q=75"
+                 alt="On click, MyApp updates its count state to 1 and passes it down to both children" style="width: 300px; height: 300px;">
+                 <figcaption>
+                    On click, MyApp updates its count state to 1 <br>and passes it down to both children
+                 </figcaption>
+    
+            </figure>  
+            </div>
+        <p>Now when you click either button, the count in MyApp will change, which will change both of the counts<br>
+             in MyButton. Here’s how you can express this in code.</p>    
+        <p>
+            First, move the state up from MyButton into MyApp:
+        </p>     
+        <pre>
+            <code>
+                export default function MyApp() {
+                    const [count, setCount] = useState(0);
+                  
+                    function handleClick() {
+                      setCount(count + 1);
+                    }
+                    return (
+                        &lt;div&gt;
+                        &lt;h1&gt;Counters that update separately&lt;/h1&gt;
+                        &lt;MyButton /&gt;
+                        &lt;MyButton /&gt;
+                        &lt;/div&gt;
+                      );
+                    }
+                function MyButton() {
+                        // ... we're moving code from here ...
+                }   
+                  
+            </code>
+        </pre>
+        <p>Then, pass the state down from MyApp to each MyButton, together with the shared click handler. You can pass <br>
+            information to MyButton using the JSX curly braces, just like you previously did with built-in tags like &lt;img&gt;:</p>
+        <pre>
+            <code>
+                export default function MyApp() {
+                    const [count, setCount] = useState(0);
+
+                function handleClick() {
+                    setCount(count + 1);
+                }  
+                return (
+                  &lt;div&gt;
+                     &lt;h1&gt;Counters that update together&lt;/h1&gt;
+                     &lt;MyButton count={count} onClick={handleClick} /&gt;
+                     &lt;MyButton count={count} onClick={handleClick} /&gt;
+                  &lt;/div&gt;
+                 );
+                }  
+            </code>
+        </pre>    
+        <p>The information you pass down like this is called props. Now the MyApp component contains the count state<br>
+            and the handleClick event handler, and passes both of them down as props to each of the buttons.</p>
+        <p>Finally, change MyButton to read the props you have passed from its parent component:</p>   
+        <pre>
+            <code>
+                function MyButton({ count, onClick }) {
+                    return (
+                      &lt;button onClick={onClick}&gt;
+                        Clicked {count} times
+                      &lt;/button&gt;
+                    );
+                  }
+                  
+            </code>
+        </pre>
+        <p>When you click the button, the onClick handler fires. Each button’s onClick prop was set to the <br>
+           handleClick function inside MyApp, so the code inside of it runs. That code calls setCount(count + 1),<br>
+            incrementing the count state variable. The new count value is passed as a prop to each button, so they all <br>
+            show the new value. This is called “lifting state up”. By moving state up, you’ve shared it between components.</p>
+        <h1 id="Next_Steps">Next Steps </h1>    
+        <p>By now, you know the basics of how to write React code!</p>
+        <p>Check out the Tutorial to put them into practice and build your first mini-app with React.</p>
         </main>
         <aside>
             <h3>On this page</h3>
@@ -389,14 +501,14 @@
                 <li><a href="#Creating_and_nesting_components">Creating and nesting components </a></li>
                 <li><a href="#Writing_markup_with_JSX">Writing markup with JSX </a></li>
                 <li><a href="#Adding_styles">Adding styles </a></li>
-                <li><a href="#">Displaying data </a></li>
-                <li><a href="#">Conditional rendering  </a></li>
-                <li><a href="#">Rendering lists  </a></li>
-                <li><a href="#">Responding to events  </a></li>
-                <li><a href="#">Updating the screen  </a></li>
-                <li><a href="#">Using Hooks   </a></li>
-                <li><a href="#">Sharing data between components   </a></li>
-                <li><a href="#">Next Steps    </a></li>      
+                <li><a href="#Displaying_data">Displaying data </a></li>
+                <li><a href="#Conditional_rendering">Conditional rendering  </a></li>
+                <li><a href="#Rendering_lists">Rendering lists  </a></li>
+                <li><a href="#Responding_to_events">Responding to events  </a></li>
+                <li><a href="#Updating_the_screen">Updating the screen  </a></li>
+                <li><a href="#Using_Hooks">Using Hooks   </a></li>
+                <li><a href="#Sharing_data_between_components">Sharing data between components   </a></li>
+                <li><a href="#Next_Steps">Next Steps    </a></li>      
             </ul>
         </aside>
         
