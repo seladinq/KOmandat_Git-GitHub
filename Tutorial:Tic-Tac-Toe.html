@@ -42,6 +42,7 @@
     </head>
     <body>
         <nav>
+            <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
             <details>
                 <summary><a href="file:///home/tiranait4/Documents/REACT_DEV/REACT_DOC.html" >Quick Start</a></summary>
@@ -221,6 +222,33 @@
               <li><a href="#wrapping_up">Wrapping up</a></li>
           </ul>
      </aside>
-      
+     <script> 
+        function filterMenu(){
+            const input=document.getElementById("menuSearch");
+            const filter= input.value.toLowerCase();
+            const details =document.querySelectorAll("nav details");
+            details.forEach(detail => {
+                const summary = detail.querySelector("summary");
+                const summaryText = summary.textContent.toLowerCase();
+                let anyVisibleItem= false;
+                items.forEach((item) =>{
+                    if(text.includes(filter)){
+                        item.style.display = "block";
+                        anyVisibleItem = true;
+                        } else {
+                            item.style.display = "none";
+                    }
+                });
+                if(summaryText.includes(filter)) || anyVisibleItem){
+                    summary.style.display= "block";
+                    detail.style.display = "block";
+                    } else {
+                        summary.style.display = "none";
+                        detail.style.display = "none";
+                        }
+                        });
+                        }         
+        
+     </script>
     </body>
 </html>
