@@ -230,6 +230,7 @@
             details.forEach(detail => {
                 const summary = detail.querySelector("summary");
                 const summaryText = summary.textContent.toLowerCase();
+                const items= detail.querySelectorAll("ul li");
                 let anyVisibleItem= false;
                 items.forEach((item) =>{
                     if(text.includes(filter)){
@@ -239,7 +240,7 @@
                             item.style.display = "none";
                     }
                 });
-                if(summaryText.includes(filter)) || anyVisibleItem){
+                if(summaryText.includes(filter) || anyVisibleItem){
                     summary.style.display= "block";
                     detail.style.display = "block";
                     } else {
