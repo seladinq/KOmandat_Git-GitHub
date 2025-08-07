@@ -42,6 +42,7 @@
     </head>
     <body>
         <nav>
+            <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
             <details>
                 <summary><a href="file:///home/tiranait4/Documents/REACT_DEV/REACT_DOC.html" >Quick Start</a></summary>
@@ -191,7 +192,90 @@
                  </figcaption>
     
             </figure>  
+            <p>The App.js file should be selected in the Files section. The contents of that file in the code editor should be:
+            </p>
+            <pre>
+                <code>
+                    export default function Square() {
+                        return &lt;button className="square"&gt;X&lt;/button&gt;;
+                      }
+                      
+                </code>
+            </pre>
+            <p>The browser section should be displaying a square with an X in it like this:</p>
+            <img src="https://react.dev/images/tutorial/x-filled-square.png"
+                 alt="X" style="width: 80px; height: 80px;">
+            <p>Now let’s have a look at the files in the starter code.</p>
+            <h3>App.js </h3>
+            The code in App.js creates a component. In React, a component is a piece of reusable code that represents <br>
+            a part of a user interface. Components are used to render, manage, and update the UI elements in your
+            <br> application. Let’s look at the component line by line to see what’s going on:
+            <pre>
+                <code>
+                    export default function Square() {
+                        return &lt;button className="square"&gt;X&lt;/button&gt;;
+                      }
+                </code>
+            </pre>
+            <p>The first line defines a function called Square. The export JavaScript keyword makes this function accessible 
+                <br>outside of this file. The default keyword tells other files using your code that it’s the main function in your file.</p>
+            <pre>
+                <code>
+                    export default function Square() {
+                        return &lt;button className="square"&gt;X&lt;/button&gt;;
+                      }
+                      
+                </code>
+            </pre>
+            <p>
+                The second line returns a button. The return JavaScript keyword means whatever comes after is
+                <br> returned as a value to the caller of the function. &lt;button&gt; is a JSX element. A JSX element is a<br>
+                combination of JavaScript code and HTML tags that describes what you’d like to display. 
+                <br>className="square" is a button property or prop that tells CSS how to style the button. X is the text
+                <br> displayed inside of the button and &lt;/button&gt; closes the JSX element to indicate that any 
+                <br>following content shouldn’t be placed inside the button.
+            </p>
+            <h3>styles.css </h3>
+            <p>
+                Click on the file labeled styles.css in the Files section of CodeSandbox. This file defines the styles for your
+                <br> React app. The first two CSS selectors (* and body) define the style of large parts of your app while the
+                <br> .square selector defines the style of any component where the className property is set to square. In your 
+                <br>code, that would match the button from your Square component in the App.js file. 
+            </p>
+            <h3>index.js </h3>
+            <p>Click on the file labeled <code>index.js</code> in the Files section of CodeSandbox. You won’t be editing this file during the
+                <br> tutorial but it is the bridge between the component you created in the App.js file and the web browser.</p>
+            <pre>
+                <code>
+                    import { StrictMode } from 'react';
+                    import { createRoot } from 'react-dom/client';
+                    import './styles.css';
 
+                    import App from './App';
+                </code>
+            </pre>
+            <p>Lines 1-5 bring all the necessary pieces together:</p>
+          <ul>
+           <li>React</li>
+           <li>React’s library to talk to web browsers (React DOM)</li>
+           <li>The styles for your components</li>
+           <li>The component you created in <code>App.js</code>.</li>
+         </ul>
+           <p>The remainder of the file brings all the pieces together and injects the final product into <code>index.html</code> in the 
+            <br><code>public</code> folder.</p>
+            <h2>Building the board</h2>
+            <p>Let’s get back to <code>App.js</code>. This is where you’ll spend the rest of the tutorial.</p>
+            <p>Currently the board is only a single square, but you need nine! If you just try and copy paste your square 
+                <br>to make two squares like this:</p>
+            <pre>
+                <code>
+                    export default function Square() {
+                        return &lt;button className="square"&gt;X&lt;/button&gt;&lt;button className="square"&gt;X&lt;/button&gt;;
+                      } 
+                </code>
+            </pre>
+            <p>You’ll get this error:</p>
+            
 
         </main>
      <aside>
@@ -221,6 +305,35 @@
               <li><a href="#wrapping_up">Wrapping up</a></li>
           </ul>
      </aside>
-      
+     <script> 
+        function filterMenu(){
+            const input=document.getElementById("menuSearch");
+            const filter= input.value.toLowerCase();
+            const details =document.querySelectorAll("nav details");
+            details.forEach(detail => {
+                const summary = detail.querySelector("summary");
+                const summaryText = summary.textContent.toLowerCase();
+                const items= detail.querySelectorAll("ul li");
+                let anyVisibleItem= false;
+                items.forEach((item) =>{
+                    const text = item.textContent.toLowerCase();
+                    if(text.includes(filter)){
+                        item.style.display = "block";
+                        anyVisibleItem = true;
+                        } else {
+                            item.style.display = "none";
+                    }
+                });
+                if(summaryText.includes(filter) || anyVisibleItem){
+                    summary.style.display= "block";
+                    detail.style.display = "block";
+                    } else {
+                        summary.style.display = "none";
+                        detail.style.display = "none";
+                        }
+                        });
+                        }         
+        
+     </script>
     </body>
 </html>

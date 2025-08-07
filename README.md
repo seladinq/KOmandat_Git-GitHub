@@ -1,1 +1,0 @@
-# KOmandat_Git-GitHub
