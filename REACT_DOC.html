@@ -21,6 +21,21 @@
                 margin-right: 320px; 
                 flex: 1;
                 padding: 20px;}
+            main pre{
+                background-color: #f6f8fa;
+                padding: 16px;
+                border-radius: 8px;
+                overflow-x: auto;
+                font-size: 14px;
+                line-height: 1.5;
+
+            }
+            main pre code{
+                font-family: 'Fira Code','Consolas',monospace;
+                color: #24292f;
+                background: none;
+            }    
+
             #menuSearch {
                 padding: 8px 12px;
                 border: 1px solid #ccc;
@@ -119,7 +134,7 @@
             aside h3 {
                 font-size: 0.8rem;
                 font-weight: bold;
-                color: #6c757d; /* Korigjuar ngjyrën */
+                color: #6c757d; 
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 margin-bottom: 10px;
@@ -412,6 +427,7 @@
         <p>All of these approaches also work for conditionally specifying attributes. 
             If you’re unfamiliar with some of this<br> JavaScript syntax, you can start by always using if...else.</p></section>
         <section id="Rendering_lists">
+            <h1 >Rendering lists </h1>
         <p>You will rely on JavaScript features like for loop and the array map() function to render lists of components.</p>  
         <p>For example, let’s say you have an array of products:</p> 
         <pre>
@@ -441,7 +457,7 @@
              that item among its siblings. Usually, https://react.dev/learn/installation
             a key should be coming from your data, such as a database ID. <br>
             React uses your keys to know what happened if you later insert, delete, or reorder the items.</p></section>
-            <h1 >Rendering lists </h1>
+           
             <section id="Responding_to_events">
         <h1 >
             Responding to events 
@@ -713,7 +729,6 @@
             });
             
          </script>
-         
         
     </body>
 </html>

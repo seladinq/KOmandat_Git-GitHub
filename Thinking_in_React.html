@@ -5,37 +5,155 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Tutorial: Tic-Tac-Toe </title>
         <style>
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 20px;
+            }
+
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
-                display: flex;}
+                display: flex;
+            }
+
             main {
                 margin-left: 310px;
+                margin-right: 320px; 
                 flex: 1;
-                padding: 20px;
+                padding: 20px;}
+            #menuSearch {
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+                width: 200px;
+                transition: all 0.3s ease;
             }
+            #menuSearch:focus {
+                outline: none;
+                border-color: #66dafb;
+                box-shadow: 0 0 5px rgba(97, 218, 251,0.5);
+            }
+
             nav {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 300px;
                 padding: 15px;
-                background-color: #f0f0f0;
+                background-color: #f9f9f9;
                 box-sizing: border-box;
                 height: 100vh;
                 overflow-y: auto;
                 z-index: 1000;
+                border-right: 1px solid #e0e0e0;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
+            nav .section-title {
+                font-weight: 600;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                color: #888;
+                margin: 1.5rem 0 0.75rem 0;
+                letter-spacing: 0.05em; 
+            } 
+            nav details{
+                margin-bottom: 0.75rem;
+                border-radius: 6px;
+            }
+            nav summary {
+                font-weight: 600;
+                font-size: 0.95rem;
+                padding: 0.5rem 0.75rem;
+                background: #e6e6e6;
+                border-radius: 6px;
+                list-style: none;
+                transition: backround-color 0.2s ease;
+                }
+                nav summary:hover {
+                    background-color: #d4d4d4;
+                    }
+            nav details[open] summary{
+                background-color: #61dafb;
+                color:white;
+            } 
+            nav ul {
+                list-style: none;
+                padding-left: 1rem;
+                margin: 0.5rem 0 0 0;
+            }    
+            nav ul li {
+                margin: 0.4rem 0;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: #0366d6;
+                font-size: 0.9rem;
+                display: block;
+                padding: 0.25rem 0;
+                transition: color 0.2s ease;
+            }
+            nav ul li a:hover {
+                color: #0a74da;
+                text-decoration: underline;
+            }
+            nav hr {
+                border: none;
+                border-top: 1px solid #ddd;
+                margin: 2rem 0 1.5rem 0;
+            }
+            
             aside{
                 position: fixed;
                 top: 0;
                 right: 0;
                 width: 300px;
                 height: 100vh;
-                background-color: #f0f0f0;
                 padding: 20px;
                 box-sizing: border-box;
                 overflow-y: auto;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                border-left: 1px solid #e0e0e0;
+                background-color: #fdfdfd;
+            }
+            aside h3 {
+                font-size: 0.8rem;
+                font-weight: bold;
+                color: #6c757d; 
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                padding-left: 12px;
+            }
+            aside ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            aside ul li{
+                margin-bottom: 2px;
+            }
+            aside ul li a {
+                display: block;
+                padding: 6px 12px;
+                text-decoration: none;
+                color: #555;
+                border-radius: 4px;
+                font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                transition: all 0.2s ease-in-out;
+            }
+            aside ul li a:hover {
+                background-color: #f0f3f5;
+                color: #000;
+            }
+
+     
+            aside ul li a.active {
+                color: #0d6efd; 
+                font-weight: 600;
+                border-left: 3px solid #0d6efd;
+                background-color: #e7f1ff;
             }
             
         </style>
@@ -170,35 +288,73 @@
               <li><a href="#where_to_go_from_here">Where to go from here</a></li>
             </ul>
           </aside>
-     <script> 
-        function filterMenu(){
-            const input=document.getElementById("menuSearch");
-            const filter= input.value.toLowerCase();
-            const details =document.querySelectorAll("nav details");
-            details.forEach(detail => {
-                const summary = detail.querySelector("summary");
-                const summaryText = summary.textContent.toLowerCase();
-                const items= detail.querySelectorAll("ul li");
-                let anyVisibleItem= false;
-                items.forEach((item) =>{
-                    const text = item.textContent.toLowerCase();
-                    if(text.includes(filter)){
-                        item.style.display = "block";
-                        anyVisibleItem = true;
-                        } else {
-                            item.style.display = "none";
-                    }
-                });
-                if(summaryText.includes(filter) || anyVisibleItem){
-                    summary.style.display= "block";
-                    detail.style.display = "block";
-                    } else {
-                        summary.style.display = "none";
-                        detail.style.display = "none";
+          <script> 
+            function filterMenu(){
+                const input=document.getElementById("menuSearch");
+                const filter= input.value.toLowerCase();
+                const details =document.querySelectorAll("nav details");
+                details.forEach(detail => {
+                    const summary = detail.querySelector("summary");
+                    const summaryText = summary.textContent.toLowerCase();
+                    const items= detail.querySelectorAll("ul li");
+                    let anyVisibleItem= false;
+                    items.forEach((item) =>{
+                        const text = item.textContent.toLowerCase();
+                        if(text.includes(filter)){
+                            item.style.display = "block";
+                            anyVisibleItem = true;
+                            } else {
+                                item.style.display = "none";
                         }
-                        });
-                        }         
-        
-     </script>
+                    });
+                    if(summaryText.includes(filter) || anyVisibleItem){
+                        summary.style.display= "block";
+                        detail.style.display = "block";
+                        } else {
+                            summary.style.display = "none";
+                            detail.style.display = "none";
+                            }
+                            });
+                            }    
+
+                //Menu aside
+                            document.addEventListener('DOMContentLoaded', () => {
+                const sections = document.querySelectorAll('main section[id]');
+                const navLinks = document.querySelectorAll('aside ul li a');
+
+                if (sections.length === 0 || navLinks.length === 0) {
+                    console.log("Scrollspy nuk u aktivizua: Nuk u gjetën seksione ose linke.");
+                    return;
+                }
+
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.15
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                            });
+
+                            const targetId = entry.target.getAttribute('id');
+                            const activeLink = document.querySelector(`aside ul li a[href="#${targetId}"]`);
+
+                            if (activeLink) {
+                                activeLink.classList.add('active');
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+            
+         </script>
     </body>
 </html>
