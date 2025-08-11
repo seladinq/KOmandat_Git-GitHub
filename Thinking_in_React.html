@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Tutorial: Tic-Tac-Toe </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                display: flex;}
+            main {
+                margin-left: 310px;
+                flex: 1;
+                padding: 20px;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 300px;
+                padding: 15px;
+                background-color: #f0f0f0;
+                box-sizing: border-box;
+                height: 100vh;
+                overflow-y: auto;
+                z-index: 1000;
+            }
+            aside{
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: #f0f0f0;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <nav>
+            <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
+            <div class="section-title">GET STARTED</div>
+            <details>
+                <summary><a href="file:///home/tiranait4/Documents/REACT_DEV/REACT_DOC.html" >Quick Start</a></summary>
+                <ul>
+                    <li><a href="/home/tiranait4/Documents/REACT_DEV/Tutorial:Tic-Tac-Toe.html">Tutorial: Tic-Tac-Toe</a></li>
+                    <li><a href="">Thinking in React</a></li>
+                </ul>
+            </details> 
+            <details>
+                <summary>Installation</summary>
+                <ul>
+                    <li><a href="#">Creating a React App</a></li>
+                    <li><a href="#">Build a React App from Scratch</a></li>
+                    <li><a href="#">Add React to an Existing Project</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Setup</summary>
+                <ul>
+                    <li><a href="#">Editor Setup</a></li>
+                    <li><a href="#">Using TypeScrip</a></li>
+                    <li><a href="#">React Developers Tools</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>React Compiler</summary>
+                <ul>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Incremental Adoption</a></li>
+                    <li><a href="#">Debugging and Troubleshooting</a></li>
+                </ul>
+            </details><hr>
+            <div class="section-title">LEARN REACT</div>
+            <details>
+                <summary>Describing the UI</summary>
+                <ul>
+                    <li><a href="#">Your First Component</a></li>
+                    <li><a href="#">Importing and Exporting Components</a></li>
+                    <li><a href="#">Writing Markup with JSX</a></li>
+                    <li><a href="#">JavaScript in JSX with Curly Braces</a></li>
+                    <li><a href="#">Passing Props to a Component</a></li>
+                    <li><a href="#">Conditional Rendering</a></li>
+                    <li><a href="#">Rendering Lists</a></li>
+                    <li><a href="#">Keeping Components Pure</a></li>
+                    <li><a href="#">Your UI as a Tree</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Adding Interactivity</summary>
+                <ul>
+                    <li><a href="#">Responding to Events</a></li>
+                    <li><a href="#">State: A Component's Memory</a></li>
+                    <li><a href="#">Render and Commit</a></li>
+                    <li><a href="#">State as a Snapshot</a></li>
+                    <li><a href="#">Queueing a Series of State Updates</a></li>
+                    <li><a href="#">Updating Objects in State</a></li>
+                    <li><a href="#">Updating Arrays in State</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Managing State</summary>
+                <ul>
+                    <li><a href="#">Reacting to Input with State</a></li>
+                    <li><a href="#">Choosing the State Structure </a></li>
+                    <li><a href="#">Sharing State Between Components</a></li>
+                    <li><a href="#">Preserving and Resetting State</a></li>
+                    <li><a href="#">Extracting State Logic into a Reducer</a></li>
+                    <li><a href="#">Passing Data Deeply with Context</a></li>
+                    <li><a href="#">Scaling Up with Reducer and Context</a></li>
+                </ul>
+            </details>
+            <details>
+                <summary>Escape Hatches</summary>
+                <ul>
+                    <li><a href="#">Referencing Values with Refs</a></li>
+                    <li><a href="#">Manipulating the DOM with Refs</a></li>
+                    <li><a href="#">Synchronizing with Effect</a></li>
+                    <li><a href="#">You Might Not Need an Effect</a></li>
+                    <li><a href="#">Lifecycle of Reactive Effect</a></li>
+                    <li><a href="#">Separating Events from Effects</a></li>
+                    <li><a href="#">Removing Effect Dependencies</a></li>
+                    <li><a href="#">Reusing Logic with Custom Hooks</a></li>
+                </ul>
+            </details>
+        </nav>
+        <main>
+            <h1 id="#">Thinking in React</h1>
+            <p>React can change how you think about the designs you look at and the apps you build. When
+                <br> you build a user interface with React, you will first break it apart into pieces called components. 
+                <br>Then, you will describe the different visual states for each of your components. Finally, you will 
+                <br>connect your components together so that the data flows through them. In this tutorial, we’ll 
+                <br>guide you through the thought process of building a searchable product data table with React.</p>
+            <h1>Start with the mockup </h1>
+            <p>Imagine that you already have a JSON API and a mockup from a designer.</p>
+            <p>The JSON API returns some data that looks like this:
+            </p>
+            <pre>
+                <code>
+                [
+                    { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+                    { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+                    { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+                    { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+                    { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+                    { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
+                ]  
+                </code>
+            </pre>
+            <p>The mockup looks like this:</p>
+            <img src="https://react.dev/images/docs/s_thinking-in-react_ui.png" alt="Photo1"
+            style="width: 300px; height: 400px;display: flex ; justify-content: center; margin: 20px;">
+
+        </main>
+        <aside>
+            <h3>On this page</h3>
+            <ul>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#start_with_the_mockup">Start with the mockup</a></li>
+              <li><a href="#step_1_break_the_ui_into_a_component_hierarchy">Step 1: Break the UI into a component hierarchy</a></li>
+              <li><a href="#step_2_build_a_static_version_in_react">Step 2: Build a static version in React</a></li>
+              <li><a href="#step_3_find_the_minimal_but_complete_representation_of_ui_state">Step 3: Find the minimal but complete representation of UI state</a></li>
+              <li><a href="#step_4_identify_where_your_state_should_live">Step 4: Identify where your state should live</a></li>
+              <li><a href="#step_5_add_inverse_data_flow">Step 5: Add inverse data flow</a></li>
+              <li><a href="#where_to_go_from_here">Where to go from here</a></li>
+            </ul>
+          </aside>
+     <script> 
+        function filterMenu(){
+            const input=document.getElementById("menuSearch");
+            const filter= input.value.toLowerCase();
+            const details =document.querySelectorAll("nav details");
+            details.forEach(detail => {
+                const summary = detail.querySelector("summary");
+                const summaryText = summary.textContent.toLowerCase();
+                const items= detail.querySelectorAll("ul li");
+                let anyVisibleItem= false;
+                items.forEach((item) =>{
+                    const text = item.textContent.toLowerCase();
+                    if(text.includes(filter)){
+                        item.style.display = "block";
+                        anyVisibleItem = true;
+                        } else {
+                            item.style.display = "none";
+                    }
+                });
+                if(summaryText.includes(filter) || anyVisibleItem){
+                    summary.style.display= "block";
+                    detail.style.display = "block";
+                    } else {
+                        summary.style.display = "none";
+                        detail.style.display = "none";
+                        }
+                        });
+                        }         
+        
+     </script>
+    </body>
+</html>
