@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>React Documentation</title>
+        <style>
+            /* SHTESË: Stili për lëvizje të butë dhe padding kur klikon linkun */
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 20px;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                display: flex;
+            }
+
+            /* MODIFIKIM: Shtuar margin-right për të lënë hapësirë për menunë e djathtë */
+            main {
+                margin-left: 310px;
+                margin-right: 320px; /* Hapësirë për menunë <aside> */
+                flex: 1;
+                padding: 20px;
+            }
+
+            #menuSearch {
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+                width: calc(100% - 24px);
+                margin-bottom: 1rem;
+                transition: all 0.3s ease;
+            }
+            #menuSearch:focus {
+                outline: none;
+                border-color: #66dafb;
+                box-shadow: 0 0 5px rgba(97, 218, 251,0.5);
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 300px;
+                padding: 15px;
+                background-color: #f9f9f9;
+                box-sizing: border-box;
+                height: 100vh;
+                overflow-y: auto;
+                z-index: 1000;
+                border-right: 1px solid #e0e0e0;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+            nav .section-title {
+                font-weight: 600;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                color: #888;
+                margin: 1.5rem 0 0.75rem 0;
+                letter-spacing: 0.05em; 
+            } 
+            nav details{
+                margin-bottom: 0.75rem;
+                border-radius: 6px;
+            }
+            nav summary {
+                font-weight: 600;
+                font-size: 0.95rem;
+                padding: 0.5rem 0.75rem;
+                background: #e6e6e6;
+                border-radius: 6px;
+                list-style: none;
+                transition: background-color 0.2s ease; /* Korigjuar 'backround-color' */
+                cursor: pointer;
+            }
+            nav summary:hover {
+                background-color: #d4d4d4;
+            }
+            nav details[open] > summary { /* Korigjuar selektorin */
+                background-color: #e0e0e0;
+                color: black;
+            } 
+            nav ul {
+                list-style: none;
+                padding-left: 1rem;
+                margin: 0.5rem 0 0 0;
+            }    
+            nav ul li {
+                margin: 0.4rem 0;
+            }
+            nav ul li a {
+                text-decoration: none;
+                color: #0366d6;
+                font-size: 0.9rem;
+                display: block;
+                padding: 0.25rem 0;
+                transition: color 0.2s ease;
+            }
+            nav ul li a:hover {
+                color: #0a74da;
+                text-decoration: underline;
+            }
+            nav hr {
+                border: none;
+                border-top: 1px solid #ddd;
+                margin: 2rem 0 1.5rem 0;
+            }
+            
+            aside{
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: auto;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                border-left: 1px solid #e0e0e0;
+                background-color: #fdfdfd;
+            }
+            aside h3 {
+                font-size: 0.8rem;
+                font-weight: bold;
+                color: #6c757d; /* Korigjuar ngjyrën */
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                padding-left: 12px;
+            }
+            aside ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            aside ul li{
+                margin-bottom: 2px;
+            }
+            aside ul li a {
+                display: block;
+                padding: 6px 12px;
+                text-decoration: none;
+                color: #555;
+                border-radius: 4px;
+                font-size: 0.9rem;
+                border-left: 3px solid transparent;
+                transition: all 0.2s ease-in-out;
+            }    
+            aside ul li a:hover {
+                background-color: #f0f3f5;
+                color: #000;
+            }    
+
+            /* SHTESË: Stili për linkun aktiv në menunë e djathtë */
+            aside ul li a.active {
+                color: #0d6efd; /* Ngjyra blu */
+                font-weight: 600;
+                border-left: 3px solid #0d6efd;
+                background-color: #e7f1ff;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
+            <div class="section-title">GET STARTED</div>
+            <details>
+                <summary>Quick Start</summary>
+                <ul>
+                    <li><a href="#">Tutorial: Tic-Tac-Toe</a></li>
+                    <li><a href="#">Thinking in React</a></li>
+                </ul>
+            </details> 
+            </nav>
+
+        <main>
+            <section id="quick_start">
+                <h1>Quick Start</h1>
+                <p>Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.</p>
+                <div>
+                    <h3>You will learn</h3>
+                    <ul>
+                        <li>How to create and nest components</li>
+                        <li>How to add markup and styles</li>
+                        <li>How to display data</li>
+                        <li>How to render conditions and lists</li>
+                        <li>How to respond to events and update the screen</li>
+                        <li>How to share data between components </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="Creating_and_nesting_components">
+                <h1>Creating and nesting components </h1>
+                <p>React apps are made out of components. A component is a piece of the UI (user interface) that has its own<br>
+                logic and appearance. A component can be as small as a button, or as large as an entire page.</p>
+                <p>React components are JavaScript functions that return markup:</p>
+                <pre><code>function MyButton() {
+    return (
+        &lt;button&gt;I'm a button&lt;/button&gt;
+    );
+    }</code></pre>
+                <p>Now that you ve declared MyButton, you can nest it into another component:</p>
+                <pre><code>export default function MyApp() {
+    return (
+        &lt;div&gt;
+        &lt;h1&gt;Welcome to my app&lt;/h1&gt;
+        &lt;MyButton /&gt;
+        &lt;/div&gt;
+    );
+    }</code></pre>
+                <p>Notice that &lt;MyButton /&gt; starts with a capital letter. That’s how you know it’s a React component. 
+                React component names<br> must always start with a capital letter, while HTML tags must be lowercase.</p>
+            </section>
+            
+            <section id="Writing_markup_with_JSX">
+                <h1>Writing markup with JSX </h1>
+                <p>The markup syntax you’ve seen above is called JSX. It is optional, but most React projects use JSX for its convenience.<br>
+                        All of the tools we recommend for local development support JSX out of the box.</p>
+                <p>
+                    JSX is stricter than HTML. You have to close tags like &lt;br /&gt;. 
+                    Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent,
+                    like a &lt;div&gt;<br>...&lt;/div&gt; or an empty &lt;&gt;...&lt;/&gt; wrapper:
+                </p>
+                <pre><code>function AboutPage() {
+    return (
+        &lt;&gt;
+        &lt;h1&gt;About&lt;/h1&gt;
+        &lt;p&gt;Hello there.&lt;br /&gt;How do you do?&lt;/p&gt;
+        &lt;/&gt;
+    );
+    }</code></pre>
+                <p>If you have a lot of HTML to port to JSX, you can use an online converter.</p>
+            </section>
+
+            <section id="Adding_styles">
+                <h1>Adding styles</h1>
+                <p>In React, you specify a CSS class with className. It works the same way as the HTML class attribute:</p>
+                <pre><code>&lt;img className="avatar" /&gt;</code></pre>
+                <p>Then you write the CSS rules for it in a separate CSS file:</p>
+                <pre><code>/* In your CSS */
+.avatar {
+    border-radius: 50%;
+}</code></pre>
+                <p>React does not prescribe how you add CSS files. In the simplest case, you’ll add a
+                    &lt;link&gt; tag to your HTML. If you use a build tool or a framework, consult its documentation <br>
+                    to learn how to add a CSS file to your project.</p>
+            </section>
+
+            <section id="Displaying_data">
+                <h1>Displaying data </h1>
+                <p>JSX lets you put markup into JavaScript. Curly braces let you “escape back” into JavaScript so that you can<br>
+                    embed some variable from your code and display it to the user. For example, this will display user.name:</p>
+                <pre><code>return (
+    &lt;h1&gt;
+        {user.name}
+    &lt;/h1&gt;
+);</code></pre>
+                <p>
+                    You can also “escape into JavaScript” from JSX attributes, but you have to use curly braces instead of quotes. <br>
+                    For example, className="avatar" passes the "avatar" string as the CSS class, but src={user.imageUrl}<br>
+                    reads the JavaScript user.imageUrl variable value, and then passes that value as the src attribute:
+                </p>     
+                <pre><code>return (
+    &lt;img
+        className="avatar"
+        src={user.imageUrl}
+    /&gt;
+);</code></pre>
+                <p>You can put more complex expressions inside the JSX curly braces too, for example, string concatenation:</p>
+                <p>In the above example, style={{}} is not a special syntax, but a regular {} object inside the style={ } JSX<br>
+                    curly braces. You can use the style attribute when your styles depend on JavaScript variables.</p>
+            </section>
+
+            <section id="Conditional_rendering">
+                <h1>Conditional rendering</h1>   
+                <p>In React, there is no special syntax for writing conditions. Instead, you’ll use the same techniques as you use<br>
+                    when writing regular JavaScript code. For example, you can use an if statement to conditionally include JSX:</p>
+                <pre><code>let content;
+if (isLoggedIn) {
+    content = &lt;AdminPanel /&gt;;
+} else {
+    content = &lt;LoginForm /&gt;;
+}
+return (
+    &lt;div&gt;
+        {content}
+    &lt;/div&gt;
+);</code></pre>
+                <p>If you prefer more compact code, you can use the conditional ? operator. Unlike if, it works inside JSX:</p>     
+                <pre><code>&lt;div&gt;
+{isLoggedIn ? (
+    &lt;AdminPanel /&gt;
+) : (
+    &lt;LoginForm /&gt;
+)}
+&lt;/div&gt;</code></pre>
+                <p>When you don’t need the else branch, you can also use a shorter logical && syntax:</p>
+                <pre><code>&lt;div&gt;
+{isLoggedIn && &lt;AdminPanel /&gt;}
+&lt;/div&gt;</code></pre>
+                <p>All of these approaches also work for conditionally specifying attributes. 
+                    If you’re unfamiliar with some of this<br> JavaScript syntax, you can start by always using if...else.</p>
+            </section>
+
+            <section id="Rendering_lists">
+                <h1>Rendering lists </h1>
+                <p>You will rely on JavaScript features like for loop and the array map() function to render lists of components.</p>  
+                <p>For example, let’s say you have an array of products:</p> 
+                <pre><code>const products = [
+    { title: 'Cabbage', id: 1 },
+    { title: 'Garlic', id: 2 },
+    { title: 'Apple', id: 3 },
+];</code></pre>  
+                <p>Inside your component, use the map() function to transform an array of products into an array of &lt;li&gt; items:</p>  
+                <pre><code>const listItems = products.map(product =&gt;
+    &lt;li key={product.id}&gt;
+        {product.title}
+    &lt;/li&gt;
+);
+
+return (
+    &lt;ul&gt;{listItems}&lt;/ul&gt;
+);</code></pre>
+                <p>Notice how &lt;li&gt; has a key attribute. For each item in a list, you should pass a string or a number that uniquely <br>identifies
+                    that item among its siblings. Usually, 
+                    a key should be coming from your data, such as a database ID. <br>
+                    React uses your keys to know what happened if you later insert, delete, or reorder the items.</p>
+            </section>
+            
+            <section id="Responding_to_events">
+                <h1>Responding to events</h1>
+                <p>You can respond to events by declaring event handler functions inside your components:</p>
+                <pre><code>function MyButton() {
+    function handleClick() {
+        alert('You clicked me!');
+    }
+    
+    return (
+        &lt;button onClick={handleClick}&gt;
+        Click me
+        &lt;/button&gt;
+    );
+    }</code></pre>
+                <p>Notice how onClick={handleClick} has no parentheses at the end! Do not call the event handler function: you<br>
+                    only need to pass it down. React will call your event handler when the user clicks the button.</p>
+            </section>
+
+            <section id="Updating_the_screen">
+                <h1>Updating the screen </h1>
+                <p>Often, you’ll want your component to “remember” some information and display it. For example, 
+                    maybe you <br>want to count the number of times a button is clicked. To do this, add state to your component.</p>
+                <p>First, import useState from React:</p>
+                <pre><code>import React, { useState } from 'react';</code></pre>
+                <p>Now you can declare a state variable inside your component:</p>
+                <pre><code>function MyButton() {
+    const [count, setCount] = useState(0);
+    // ...</code></pre>
+                <p>You’ll get two things from useState: the current state (count),
+                    and the function that lets you update it <br>(setCount). You can give them any names, but the convention is to write [something, setSomething].</p>
+                <p>The first time the button is displayed, count will be 0 because you passed 0 to useState(). When you <br>
+                    want to change state, call setCount() and pass the new value to it. Clicking this button will increment the counter: </p>    
+                <pre><code>function MyButton() {
+    const [count, setCount] = useState(0);
+    function handleClick() {
+        setCount(count + 1);
+    }
+    return (
+        &lt;button onClick={handleClick}&gt;
+        Clicked {count} times
+        &lt;/button&gt;
+    );
+}</code></pre>  
+                <p>React will call your component function again. This time, count will be 1. Then it will be 2. And so on.</p>
+                <p>If you render the same component multiple times, each will get its own state. Click each button separately:</p>
+                <p>Notice how each button “remembers” its own count state and doesn’t affect other buttons.</p>
+            </section>
+
+            <section id="Using_Hooks">
+                <h1>Using Hooks</h1>
+                <p>Functions starting with use are called Hooks. useState is a built-in Hook provided by React. You can find<br>
+                    other built-in Hooks in the API reference. You can also write your own Hooks by combining the existing ones.</p>
+                <p>Hooks are more restrictive than other functions. You can only call Hooks at the top of your components (or<br>
+                    other Hooks). If you want to use useState in a condition or a loop, extract a new component and put it there.</p>
+            </section>
+
+            <section id="Sharing_data_between_components">
+                <h1>Sharing data between components </h1> 
+                <p>In the previous example, each MyButton had its own independent count, and when each button was clicked, <br>
+                    only the count for the button clicked changed:</p> 
+                <div style="display: flex;justify-content: left; gap: 20px;">
+                    <figure>
+                        <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_child.png&w=640&q=75"
+                        alt="Initially, each MyButton’s count state is 0" style="width: 300px; height: 300px;">
+                        <figcaption>
+                            Initially, each MyButton’s count state is 0
+                        </figcaption>
+                    </figure>  
+                    <figure>
+                        <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_child_clicked.png&w=640&q=75"
+                        alt="The first MyButton updates its count to 1" style="width: 300px; height: 300px;">
+                        <figcaption>
+                            The first MyButton updates its count to 1
+                        </figcaption>
+                    </figure>  
+                </div>
+                <p>However, often you’ll need components to share data and always update together.</p>
+                <p>To make both MyButton components display the same count and update together, you need to move the <br>
+                    state from the individual buttons “upwards” to the closest component containing all of them.</p>
+                <p>In this example, it is MyApp:</p>    
+                <div style="display: flex;justify-content: left; gap: 20px;">
+                    <figure>
+                        <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_parent.png&w=640&q=75"
+                        alt="Initially, MyApp’s count state is 0 and is passed down to both children" style="width: 300px; height: 300px;">
+                        <figcaption>
+                            Initially, MyApp’s count state is 0 and<br> is passed down to both children
+                        </figcaption>
+                    </figure>  
+                    <figure>
+                        <img src="https://react.dev/_next/image?url=%2Fimages%2Fdocs%2Fdiagrams%2Fsharing_data_parent_clicked.png&w=640&q=75"
+                        alt="On click, MyApp updates its count state to 1 and passes it down to both children" style="width: 300px; height: 300px;">
+                        <figcaption>
+                            On click, MyApp updates its count state to 1 <br>and passes it down to both children
+                        </figcaption>
+                    </figure>  
+                </div>
+                <p>Now when you click either button, the count in MyApp will change, which will change both of the counts<br>
+                    in MyButton. Here’s how you can express this in code.</p>    
+                <p>
+                    First, move the state up from MyButton into MyApp:
+                </p>     
+                <pre><code>export default function MyApp() {
+    const [count, setCount] = useState(0);
+    
+    function handleClick() {
+        setCount(count + 1);
+    }
+    return (
+        &lt;div&gt;
+        &lt;h1&gt;Counters that update separately&lt;/h1&gt;
+        &lt;MyButton /&gt;
+        &lt;MyButton /&gt;
+        &lt;/div&gt;
+        );
+    }
+function MyButton() {
+        // ... we're moving code from here ...
+}</code></pre>
+                <p>Then, pass the state down from MyApp to each MyButton, together with the shared click handler. You can pass <br>
+                    information to MyButton using the JSX curly braces, just like you previously did with built-in tags like &lt;img&gt;:</p>
+                <pre><code>export default function MyApp() {
+    const [count, setCount] = useState(0);
+
+function handleClick() {
+    setCount(count + 1);
+}  
+return (
+    &lt;div&gt;
+        &lt;h1&gt;Counters that update together&lt;/h1&gt;
+        &lt;MyButton count={count} onClick={handleClick} /&gt;
+        &lt;MyButton count={count} onClick={handleClick} /&gt;
+    &lt;/div&gt;
+    );
+}</code></pre>    
+                <p>The information you pass down like this is called props. Now the MyApp component contains the count state<br>
+                    and the handleClick event handler, and passes both of them down as props to each of the buttons.</p>
+                <p>Finally, change MyButton to read the props you have passed from its parent component:</p>   
+                <pre><code>function MyButton({ count, onClick }) {
+    return (
+        &lt;button onClick={onClick}&gt;
+        Clicked {count} times
+        &lt;/button&gt;
+    );
+    }</code></pre>
+                <p>When you click the button, the onClick handler fires. Each button’s onClick prop was set to the <br>
+                handleClick function inside MyApp, so the code inside of it runs. That code calls setCount(count + 1),<br>
+                    incrementing the count state variable. The new count value is passed as a prop to each button, so they all <br>
+                    show the new value. This is called “lifting state up”. By moving state up, you’ve shared it between components.</p>
+            </section>
+            
+            <section id="Next_Steps">
+                <h1>Next Steps </h1>    
+                <p>By now, you know the basics of how to write React code!</p>
+                <p>Check out the Tutorial to put them into practice and build your first mini-app with React.</p>
+            </section>
+        </main>
+        
+        <aside>
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#quick_start">Overview</a></li>
+                <li><a href="#Creating_and_nesting_components">Creating and nesting components </a></li>
+                <li><a href="#Writing_markup_with_JSX">Writing markup with JSX </a></li>
+                <li><a href="#Adding_styles">Adding styles </a></li>
+                <li><a href="#Displaying_data">Displaying data </a></li>
+                <li><a href="#Conditional_rendering">Conditional rendering  </a></li>
+                <li><a href="#Rendering_lists">Rendering lists  </a></li>
+                <li><a href="#Responding_to_events">Responding to events  </a></li>
+                <li><a href="#Updating_the_screen">Updating the screen  </a></li>
+                <li><a href="#Using_Hooks">Using Hooks   </a></li>
+                <li><a href="#Sharing_data_between_components">Sharing data between components   </a></li>
+                <li><a href="#Next_Steps">Next Steps    </a></li>      
+            </ul>
+        </aside>
+
+        <script> 
+            // Kodi yt ekzistues për filtrimin
+            function filterMenu(){
+                const input=document.getElementById("menuSearch");
+                const filter= input.value.toLowerCase();
+                const details =document.querySelectorAll("nav details");
+                details.forEach(detail => {
+                    const summary = detail.querySelector("summary");
+                    const summaryText = summary.textContent.toLowerCase();
+                    const items= detail.querySelectorAll("ul li");
+                    let anyVisibleItem= false;
+                    items.forEach((item) =>{
+                        const text = item.textContent.toLowerCase();
+                        if(text.includes(filter)){
+                            item.style.display = "block";
+                            anyVisibleItem = true;
+                            } else {
+                                item.style.display = "none";
+                        }
+                    });
+                    if(summaryText.includes(filter) || anyVisibleItem){
+                        summary.style.display= "block";
+                        detail.style.display = "block";
+                        } else {
+                            summary.style.display = "none";
+                            detail.style.display = "none";
+                        }
+                });
+            }         
+            
+            // SHTESË: Kodi i korrigjuar për Scrollspy
+            document.addEventListener('DOMContentLoaded', () => {
+                // Tani selektojmë elementët <section> që kanë një atribut [id]
+                const sections = document.querySelectorAll('main section[id]');
+                const navLinks = document.querySelectorAll('aside ul li a');
+
+                if (sections.length === 0 || navLinks.length === 0) {
+                    console.log("Scrollspy nuk u aktivizua: Nuk u gjetën seksione ose linke.");
+                    return;
+                }
+
+                const observerOptions = {
+                    root: null, 
+                    rootMargin: '0px',
+                    threshold: 0.15 
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                            });
+
+                            const targetId = entry.target.getAttribute('id');
+                            const activeLink = document.querySelector(`aside ul li a[href="#${targetId}"]`);
+
+                            if (activeLink) {
+                                activeLink.classList.add('active');
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+         </script>
+        
+    </body>
+</html>
