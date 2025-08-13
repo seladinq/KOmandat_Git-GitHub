@@ -125,10 +125,6 @@
             nav summary:hover {
                     background-color: #d4d4d4;
             }
-            nav details[open] summary{
-                background-color: #61dafb;
-                color:white;
-            } 
             nav ul {
                 list-style: none;
                 padding-left: 1rem;
@@ -148,6 +144,12 @@
             nav ul li a:hover {
                 color: #0a74da;
                 text-decoration: underline;
+            }
+            nav summary.nav-active,
+            nav ul li a.nav-active{
+                background-color: #66dafb;
+                color: white;
+                border-radius: 6px;
             }
             nav hr {
                 border: none;
@@ -699,6 +701,7 @@
             </ul>
         </aside>
         <script> 
+         //Search bar
             function filterMenu(){
                 const input=document.getElementById("menuSearch");
                 const filter= input.value.toLowerCase();
@@ -726,6 +729,20 @@
                             }
                             });
                             }    
+                //Menu nav
+                document.addEventListener('DOMContentLoaded',()=>
+                {
+                    const navItems= document.querySelectorAll("nav summary ,nav ul li a");
+                    navItems.forEach(item => {
+                        item.addEventListener("click", () => {
+                            navItems.forEach(el=>
+                                el.classList.remove('nav-active'));
+                                item.classList.add('nav-active');
+                        });
+                        });
+                    
+                });
+            
 
                 //Menu aside
                             document.addEventListener('DOMContentLoaded', () => {
