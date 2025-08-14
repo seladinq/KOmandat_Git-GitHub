@@ -15,17 +15,71 @@
                 margin: 0;
                 display: flex;
             }
-
+            /*TopBAR*/
+            .topbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 20px;
+                background-color: #f5f5f5;
+                border-bottom: 1px solid #ddd;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 900;
+            }
+            .topbar .logo{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                max-height: 35px;
+            }
+            .topbar .logo img{
+                height: 35px;
+            }
+            .figure-container{
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                max-height: 30px;
+            }
+            .topbar main-nav{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .topbar main-nav a{
+                margin: 0 10px;
+                text-decoration: none;
+                color: #0366d6;
+                font-weight: 500;
+            }    
+            .topbar main-nav a:hover{
+                text-decoration: underline;
+            }
+            .right-controls{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .search-box{
+                padding: 6px 10px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                width: 800px;
+            }
+            /*MAIN*/
             main {
                 margin-left: 310px;
                 margin-right: 320px; 
                 flex: 1;
-                padding: 30px 60px;
+                padding: 50px 60px;
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 font-size: 16px;
                 line-height: 1.5;
                 color: #1a1a1a;
-                background-color: #fafafa;
+                background-color: #f9f9f9;
             }
             main h1{
                 font-size: 2.5rem;
@@ -59,7 +113,7 @@
             }    
 
             main pre{
-                background-color: #aeb6be;
+                background-color: #ffffff;
                 padding: 16px;
                 border-radius: 8px;
                 overflow-x: auto;
@@ -72,13 +126,13 @@
                 color: #24292f;
                 background: none;
             }    
-
+            /*Nav*/
             #menuSearch {
                 padding: 8px 12px;
                 border: 1px solid #ccc;
                 border-radius: 6px;
                 font-size: 14px;
-                width: 200px;
+                width: 240px;
                 transition: all 0.3s ease;
             }
             #menuSearch:focus {
@@ -86,11 +140,11 @@
                 border-color: #66dafb;
                 box-shadow: 0 0 5px rgba(97, 218, 251,0.5);
             }
-
             nav {
                 position: fixed;
                 top: 0;
                 left: 0;
+                margin-top: 56px;
                 width: 300px;
                 padding: 15px;
                 background-color: #f9f9f9;
@@ -156,7 +210,7 @@
                 border-top: 1px solid #ddd;
                 margin: 2rem 0 1.5rem 0;
             }
-            
+            /*Aside*/
             aside{
                 position: fixed;
                 top: 0;
@@ -213,6 +267,26 @@
         </style>
     </head>
     <body>
+        <header class ="topbar">
+            <div class="logo">
+               <figure class="figure-container"><img src="https://www.logo.wine/a/logo/React_(web_framework)/React_(web_framework)-Logo.wine.svg" alt="React Logo">
+                <figcaption>React <code>v19.1</code></figcaption>
+                </figure>
+                </div>
+                <div>  <input type="text" placeholder="Search..." class="search-box"></div>
+                <div class="main-nav">
+                    <a href="#">Learn</a>
+                    <a href="#">Reference</a>
+                    <a href="#">Community</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="right-controls">
+                    <button>Dark Mode</button>
+                    <button>Translate</button>
+                    <button>GitHub</button>
+                </div>
+            
+        </header>
         <nav>
             <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
