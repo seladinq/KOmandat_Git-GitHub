@@ -20,7 +20,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 10px 20px;
+                padding: 8px 10px;
                 background-color: #f5f5f5;
                 border-bottom: 1px solid #ddd;
                 position: fixed;
@@ -32,11 +32,11 @@
             .topbar .logo{
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 5px;
                 max-height: 35px;
             }
             .topbar .logo img{
-                height: 35px;
+                height: 50px;
             }
             .figure-container{
                 display: flex;
@@ -44,20 +44,31 @@
                 gap: 2px;
                 max-height: 30px;
             }
-            .topbar main-nav{
+            .topbar .main-nav{
                 display: flex;
-                align-items: center;
-                gap: 20px;
+                gap:1rem;
+                margin-left: 2rem;
             }
-            .topbar main-nav a{
-                margin: 0 10px;
+            .topbar .main-nav a{
                 text-decoration: none;
-                color: #0366d6;
+                color: #76797c;
                 font-weight: 500;
+                font-size: 16px;
+                padding: 6px 12px;
+                border-radius: 10px;
+                transition: color 0.2s ease, background-color 0.2s ease;
             }    
-            .topbar main-nav a:hover{
-                text-decoration: underline;
+
+            .topbar .main-nav a:hover
+            {
+                background: #e0e0e0;
+                color:#000;
             }
+            .topbar .main-nav a.clicked{
+                background: #0366d6;
+                color:#fff;
+            }
+            
             .right-controls{
                 display: flex;
                 align-items: center;
@@ -115,11 +126,11 @@
             main pre{
                 background-color: #ffffff;
                 padding: 16px;
-                border-radius: 8px;
+                border-radius: 12px;
                 overflow-x: auto;
                 font-size: 14px;
                 line-height: 1.5;
-
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
             main pre code{
                 font-family: 'Fira Code','Consolas',monospace;
@@ -144,7 +155,7 @@
                 position: fixed;
                 top: 0;
                 left: 0;
-                margin-top: 56px;
+                margin-top: 52px;
                 width: 300px;
                 padding: 15px;
                 background-color: #f9f9f9;
@@ -215,6 +226,7 @@
                 position: fixed;
                 top: 0;
                 right: 0;
+                margin-top: 52px;
                 width: 300px;
                 height: 100vh;
                 padding: 20px;
@@ -775,7 +787,7 @@
             </ul>
         </aside>
         <script> 
-         //Search bar
+         //Search bar nav
             function filterMenu(){
                 const input=document.getElementById("menuSearch");
                 const filter= input.value.toLowerCase();
@@ -853,6 +865,14 @@
 
                 sections.forEach(section => {
                     observer.observe(section);
+                });
+            });
+            //Topbar main-nav
+            const links= document.querySelectorAll('.topbar .main-nav a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    links.forEach(el => el.classList.remove('clicked'));
+                    link.classList.add('clicked');
                 });
             });
             
