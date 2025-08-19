@@ -15,17 +15,82 @@
                 margin: 0;
                 display: flex;
             }
+            /*TopBAR*/
+            .topbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 10px;
+                background-color: #f5f5f5;
+                border-bottom: 1px solid #ddd;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 900;
+            }
+            .topbar .logo{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                max-height: 35px;
+            }
+            .topbar .logo img{
+                height: 50px;
+            }
+            .figure-container{
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                max-height: 30px;
+            }
+            .topbar .main-nav{
+                display: flex;
+                gap:1rem;
+                margin-left: 2rem;
+            }
+            .topbar .main-nav a{
+                text-decoration: none;
+                color: #76797c;
+                font-weight: 500;
+                font-size: 16px;
+                padding: 6px 12px;
+                border-radius: 10px;
+                transition: color 0.2s ease, background-color 0.2s ease;
+            }    
 
+            .topbar .main-nav a:hover
+            {
+                background: #e0e0e0;
+                color:#000;
+            }
+            .topbar .main-nav a.clicked{
+                background: #0366d6;
+                color:#fff;
+            }
+            
+            .right-controls{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .search-box{
+                padding: 6px 10px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                width: 800px;
+            }
+            /*MAIN*/
             main {
                 margin-left: 310px;
                 margin-right: 320px; 
                 flex: 1;
-                padding: 30px 60px;
+                padding: 50px 60px;
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
                 font-size: 16px;
                 line-height: 1.5;
                 color: #1a1a1a;
-                background-color: #fafafa;
+                background-color: #f9f9f9;
             }
             main h1{
                 font-size: 2.5rem;
@@ -59,26 +124,26 @@
             }    
 
             main pre{
-                background-color: #aeb6be;
+                background-color: #ffffff;
                 padding: 16px;
-                border-radius: 8px;
+                border-radius: 12px;
                 overflow-x: auto;
                 font-size: 14px;
                 line-height: 1.5;
-
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
             main pre code{
                 font-family: 'Fira Code','Consolas',monospace;
                 color: #24292f;
                 background: none;
             }    
-
+            /*Nav*/
             #menuSearch {
                 padding: 8px 12px;
                 border: 1px solid #ccc;
                 border-radius: 6px;
                 font-size: 14px;
-                width: 200px;
+                width: 240px;
                 transition: all 0.3s ease;
             }
             #menuSearch:focus {
@@ -86,11 +151,11 @@
                 border-color: #66dafb;
                 box-shadow: 0 0 5px rgba(97, 218, 251,0.5);
             }
-
             nav {
                 position: fixed;
                 top: 0;
                 left: 0;
+                margin-top: 52px;
                 width: 300px;
                 padding: 15px;
                 background-color: #f9f9f9;
@@ -125,10 +190,6 @@
             nav summary:hover {
                     background-color: #d4d4d4;
             }
-            nav details[open] summary{
-                background-color: #61dafb;
-                color:white;
-            } 
             nav ul {
                 list-style: none;
                 padding-left: 1rem;
@@ -149,16 +210,23 @@
                 color: #0a74da;
                 text-decoration: underline;
             }
+            nav summary.nav-active,
+            nav ul li a.nav-active{
+                background-color: #66dafb;
+                color: white;
+                border-radius: 6px;
+            }
             nav hr {
                 border: none;
                 border-top: 1px solid #ddd;
                 margin: 2rem 0 1.5rem 0;
             }
-            
+            /*Aside*/
             aside{
                 position: fixed;
                 top: 0;
                 right: 0;
+                margin-top: 52px;
                 width: 300px;
                 height: 100vh;
                 padding: 20px;
@@ -211,6 +279,26 @@
         </style>
     </head>
     <body>
+        <header class ="topbar">
+            <div class="logo">
+               <figure class="figure-container"><img src="https://www.logo.wine/a/logo/React_(web_framework)/React_(web_framework)-Logo.wine.svg" alt="React Logo">
+                <figcaption>React <code>v19.1</code></figcaption>
+                </figure>
+                </div>
+                <div>  <input type="text" placeholder="Search..." class="search-box"></div>
+                <div class="main-nav">
+                    <a href="#">Learn</a>
+                    <a href="#">Reference</a>
+                    <a href="#">Community</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="right-controls">
+                    <button>Dark Mode</button>
+                    <button>Translate</button>
+                    <button>GitHub</button>
+                </div>
+            
+        </header>
         <nav>
             <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
@@ -699,6 +787,7 @@
             </ul>
         </aside>
         <script> 
+         //Search bar nav
             function filterMenu(){
                 const input=document.getElementById("menuSearch");
                 const filter= input.value.toLowerCase();
@@ -726,6 +815,20 @@
                             }
                             });
                             }    
+                //Menu nav
+                document.addEventListener('DOMContentLoaded',()=>
+                {
+                    const navItems= document.querySelectorAll("nav summary ,nav ul li a");
+                    navItems.forEach(item => {
+                        item.addEventListener("click", () => {
+                            navItems.forEach(el=>
+                                el.classList.remove('nav-active'));
+                                item.classList.add('nav-active');
+                        });
+                        });
+                    
+                });
+            
 
                 //Menu aside
                             document.addEventListener('DOMContentLoaded', () => {
@@ -762,6 +865,14 @@
 
                 sections.forEach(section => {
                     observer.observe(section);
+                });
+            });
+            //Topbar main-nav
+            const links= document.querySelectorAll('.topbar .main-nav a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    links.forEach(el => el.classList.remove('clicked'));
+                    link.classList.add('clicked');
                 });
             });
             
