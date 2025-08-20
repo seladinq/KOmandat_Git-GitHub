@@ -70,11 +70,25 @@
                 background: #0366d6;
                 color:#fff;
             }
-            
-            .right-controls{
+            .icon-bar {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 15px;
+                justify-content: flex-end;
+            }
+            .icon-bar .icon-button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .icon-bar span.icon-emoji {
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: transform 0.2s ease;
             }
             .search-box{
                 padding: 6px 10px;
@@ -296,10 +310,20 @@
                     <a href="#">Community</a>
                     <a href="#">Blog</a>
                 </div>
-                <div class="right-controls">
-                    <button id="darkModeToggle">Dark Mode</button>
-                    <button>Translate</button>
-                    <button>GitHub</button>
+                <div class="icon-bar">
+                    <button class="icon-button" onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer;">
+                        <span class="icon-emoji" id="dark-mode-icon">🌙</span>
+                      </button>
+                      <button class="icon-button" onclick="toggleLanguage()" aria-label="Change Language;"  style="background: none; border: none; cursor: pointer;">
+                        <span class="icon-emoji">🌐</span>
+                      </button>
+                    <button class="icon-button" onclick="window.open('https://github.com/facebook/react/releases', '_blank')" 
+                    style="background: none; border: none; cursor: pointer;">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                     alt="GitHub" 
+                     style="width: 38px; height: 36px;" />
+                    </button>
+
                 </div>
             
         </header>
