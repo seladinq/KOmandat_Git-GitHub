@@ -17,6 +17,20 @@
                 margin: 0;
                 display: flex;
             }
+            /*Announcement BAR*/
+            #announcement-bar {
+                background-color: #0366d6;
+                color: white;
+                text-align: center;
+                padding: 8px 0;
+                font-size: 14px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 400;
+            }
+            
             /*TopBAR*/
             .topbar{
                 display: flex;
@@ -25,8 +39,9 @@
                 padding: 8px 10px;
                 background-color: rgb(255, 255, 255);
                 border-bottom: 1px solid #ddd;
-                position: fixed;
+                position: sticky;
                 top: 0;
+                margin-top: 40px;
                 left: 0;
                 right: 0;
                 z-index: 900;
@@ -98,6 +113,7 @@
             }
             /*MAIN*/
             main {
+                margin-top: 122px;
                 margin-left: 310px;
                 margin-right: 320px; 
                 flex: 1;
@@ -165,7 +181,7 @@
                 position: fixed;
                 top: 0;
                 left: 0;
-                margin-top: 52px;
+                margin-top: 102px;
                 width: 300px;
                 padding: 15px;
                 /*background-color: #f9f9f9;*/
@@ -242,9 +258,8 @@
             /*Aside*/
             aside{
                 position: fixed;
-                top: 0;
+                top: 102px;
                 right: 0;
-                margin-top: 52px;
                 width: 300px;
                 height: 100vh;
                 padding: 20px;
@@ -297,6 +312,10 @@
         </style>
     </head>
     <body>
+        <div id="announcement-bar">
+            <span>Join us for React Conf on Oct 7-8 </span>
+            <a href="https://conf.react.dev/" target="_blank" >Learn more.</a>
+        </div>
         <header class ="topbar">
             <div class="logo">
                <figure class="figure-container"><img src="https://www.logo.wine/a/logo/React_(web_framework)/React_(web_framework)-Logo.wine.svg" alt="React Logo">
