@@ -348,7 +348,42 @@
                 border-left: 3px solid #0d6efd;
                 background-color: #e7f1ff;
             }
-            
+            /*footer*/
+            .site-footer {
+                text-align: center;
+                padding: 5px;
+                font-size: 14px;
+                color: #888;
+                border-top: 1px solid #ddd;
+                margin-top: 40px;
+            }
+            .footer-container {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .footer-column {
+                text-align: left;
+            }
+            .footer-column h4 {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            .footer-column a {
+                display: block;
+                color: #aaa;
+                text-decoration: none;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            .footer-column a:hover {
+                text-decoration: underline;
+            }
+
+
         </style>
     </head>
     <body>
@@ -866,6 +901,42 @@
         <h1 >Next Steps </h1>    
         <p>By now, you know the basics of how to write React code!</p>
         <p>Check out the Tutorial to put them into practice and build your first mini-app with React.</p></section>
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Meta Open Source</h4>
+                    <a href="#"><code>Copyright © Meta Platforms, Inc</code></a>
+                    <a href="#"><code>uwu?</code></a>
+                </div>  
+            <div class="footer-column">
+                <h4>Learn React</h4>
+                <a href="#">Quick Start</a>
+                <a href="#">Installation</a>
+                <a href="#">Describing the UI</a>
+                <a href="#">Adding Interactivity</a>
+                <a href="#">Managing State</a>
+                <a href="#">Escape Hatches</a> 
+            </div>   
+            <div class="footer-column">
+                <h4>API Reference</h4>
+                <a href="#">React APIs</a>
+                <a href="#">React DOM APIs</a>
+            </div>      
+            <div class="footer-column">
+                <h4>Community</h4>
+                <a href="#">User Showcase</a>
+                <a href="#">Join the Community</a>
+                <a href="#">Code of Conduct</a>
+                <a href="#">Stack Overflow</a>
+            </div>    
+            <div class="footer-column">
+                <h4>More</h4>
+                <a href="#">Blog</a>
+                <a href="#">React Native</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </footer>
         </main>
         <aside>
             <h3>On this page</h3>
