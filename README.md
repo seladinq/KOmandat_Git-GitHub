@@ -17,19 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsList.forEach(other => {
           if (other !== detail) {
             other.removeAttribute("open");
+            other.querySelector("summary")?.classList.remove("nav-active");
           }
         });
+        // vendos ngjyrën blu summary kur hapet
+        detail.querySelector("summary")?.classList.add("nav-active");
+      } else {
+        detail.querySelector("summary")?.classList.remove("nav-active");
       }
     });
   });
 
-  // Kur hap faqen → vetëm "Quick Start" hapet
+  // Kur hap faqen → vetëm "Quick Start" hapet dhe ka ngjyrë
   detailsList.forEach(detail => {
-    const summaryText = detail.querySelector("summary")?.textContent.trim();
+    const summary = detail.querySelector("summary");
+    const summaryText = summary?.textContent.trim();
     if (summaryText === "Quick Start") {
       detail.setAttribute("open", "true");
+      summary?.classList.add("nav-active");
     } else {
       detail.removeAttribute("open");
+      summary?.classList.remove("nav-active");
     }
   });
 });
