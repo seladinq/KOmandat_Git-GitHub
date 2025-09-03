@@ -4,29 +4,233 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Tutorial: Tic-Tac-Toe </title>
+        <!--css per pre-code formatting-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
         <style>
+
             html {
                 scroll-behavior: smooth;
                 scroll-padding-top: 20px;
             }
 
             body {
+                transition: background-color 0.3s, color 0.3s;
+                background-color: rgb(255, 255, 255);
                 font-family: Arial, sans-serif;
                 margin: 0;
+            }
+            html.dark-mode *, body.dark-mode * {
+                background-color: #4b4848 !important;
+                color: #e0e0e0 !important;
+            }
+            .containeR{
                 display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 20px;
             }
 
+            /*Announcement BAR*/
+            #announcement-bar {
+                background-color: #f5f7f8;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                display: flex;
+                top: 0;
+                left: 0;
+                right: 0;
+                position: relative;
+                z-index: 400;
+                height: 40px;
+            }
+            #announcement-bar a {
+                color: rgb(8, 126, 164);
+                color-scheme: light;
+                font-family: Optimistic Text, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+                font-feature-settings: normal;
+                font-size: 17px;
+                font-variation-settings: normal;
+                font-weight: 500;
+                line-height: 30px;
+                margin-inline-start: 4px;
+                tab-size: 4;
+                text-decoration-color: rgb(8, 126, 164);
+                text-decoration-line: none
+            }
+            #announcement-bar a:hover {
+                text-decoration: underline;
+            }
+            #announcement-bar span {
+                font-weight: 500;
+                color: rgb(64, 71, 86);
+                color-scheme: light;
+                display: block;
+                font-family: Optimistic Text, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+                font-feature-settings: normal;
+                font-size: 17px
+            }
+            
+            /*TopBAR*/
+            .topbar{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 10px;
+                background-color: rgb(255, 255, 255);
+                border-bottom: 1px solid #ddd;
+                position: sticky;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1200;
+                height: 52px;   
+                box-sizing: border-box;      
+            }
+            .topbar .logo{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                max-height: 35px;
+                
+            }
+            .topbar .logo img{
+                height: 50px;
+            }
+            .figure-container{
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                max-height: 30px;
+                margin-left: 0;
+            }
+            .topbar .main-nav{
+                display: flex;
+                gap:0.6rem;
+                margin-left: 2rem;
+            }
+            .topbar .main-nav a{
+                text-decoration: none;
+                color: rgb(64, 71, 86);
+                font-weight: 500;
+                font-size: 16px;
+                padding: 6px 12px;
+                border-radius: 13px;
+                transition: color 0.2s ease, background-color 0.2s ease;
+            }    
+
+            .topbar .main-nav a:hover
+            {
+                background: #e0e0e0;
+                color:#000;
+            }
+            .topbar .main-nav a.clicked{
+                background: #0366d6;
+                color:#fff;
+            }
+            .icon-bar {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                justify-content: flex-end;
+            }
+            .icon-bar .icon-button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px ;
+                height: 36px ;
+                font-size: 25px;
+
+            }
+            .icon-bar .icon-emoji {
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+                width: 38px ;
+                height: 36px ;
+            }
+            .search-box{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap:8px;
+                padding: 6px 10px;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                width: 900px;
+                margin-left: 200px;
+            }
+            .search-icon { 
+                margin-right: 8px; 
+                justify-content: left;
+            }
+            /*MAIN*/
             main {
-                margin-left: 310px;
-                margin-right: 320px; 
+                /*height: calc(100vh - 92px);*/
+                margin-left: 430px;
+                margin-right: 450px; 
                 flex: 1;
-                padding: 20px;}
+                padding: 40px 60px;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 16px;
+                line-height: 1.5;
+                color: #1a1a1a;
+               /* background-color: #f9f9f9;*/
+                box-sizing: border-box;
+                z-index: 600;
+            }
+            main h1{
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-top: 0;
+                margin-bottom: 1rem;
+            }
+            main h2{
+                font-size: 1.75rem;
+                font-weight: 600;
+                margin-top: 2rem;
+                margin-bottom: 1rem;}
+            main h3{
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-top: 1.75rem;
+                margin-bottom: 0.75rem;
+            }   
+            main p{
+                margin-bottom: 1rem;
+            }
+            main ul li{
+                margin-bottom: 0.2rem;
+            }    
+
+            main pre{
+                background-color: #ffffff;
+                border-radius: 12px;
+                overflow-x: auto;
+                font-size: 14px;
+                line-height: 1.5;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            main pre code{
+                font-family: 'Fira Code','Consolas',monospace;
+                color: #24292f !important;
+                background: none;
+                background-color: #ffffff !important;
+            }    
+            /*Nav*/
             #menuSearch {
                 padding: 8px 12px;
                 border: 1px solid #ccc;
                 border-radius: 6px;
                 font-size: 14px;
-                width: 200px;
+                width: 240px;
                 transition: all 0.3s ease;
             }
             #menuSearch:focus {
@@ -34,19 +238,19 @@
                 border-color: #66dafb;
                 box-shadow: 0 0 5px rgba(97, 218, 251,0.5);
             }
-
             nav {
                 position: fixed;
-                top: 0;
+                flex: 1;
+                top: 92px;
                 left: 0;
                 width: 300px;
                 padding: 15px;
-                background-color: #f9f9f9;
+                /*background-color: #f9f9f9;*/
                 box-sizing: border-box;
                 height: 100vh;
                 overflow-y: auto;
-                z-index: 1000;
-                border-right: 1px solid #e0e0e0;
+                z-index: 800;
+                /*border-right: 1px solid #e0e0e0;*/
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
             nav .section-title {
@@ -65,18 +269,22 @@
                 font-weight: 600;
                 font-size: 0.95rem;
                 padding: 0.5rem 0.75rem;
-                background: #e6e6e6;
                 border-radius: 6px;
                 list-style: none;
                 transition: backround-color 0.2s ease;
                 }
-                nav summary:hover {
+            nav summary:hover {
                     background-color: #d4d4d4;
-                    }
-            nav details[open] summary{
-                background-color: #61dafb;
-                color:white;
-            } 
+            }
+            nav summary::after{
+                content: ">";
+                float: right;
+                transition: transform 0.3s ;
+            }
+            nav details[open] summary::after {
+                transform: rotate(90deg);
+            }
+    
             nav ul {
                 list-style: none;
                 padding-left: 1rem;
@@ -84,37 +292,48 @@
             }    
             nav ul li {
                 margin: 0.4rem 0;
+
             }
             nav ul li a {
                 text-decoration: none;
-                color: #0366d6;
+                color: rgb(64 71 86);
                 font-size: 0.9rem;
                 display: block;
                 padding: 0.25rem 0;
                 transition: color 0.2s ease;
             }
             nav ul li a:hover {
-                color: #0a74da;
-                text-decoration: underline;
+                background-color: #d4d4d4;
+                text-decoration: inherit;
+                border-radius: 6px;
+                padding-left: 2px;
+            }
+            nav summary.nav-active,
+            nav ul li a.nav-active{
+                background-color: rgb(187, 224, 241);
+                color: rgb(8 126 164);
+                border-radius: 6px;
             }
             nav hr {
                 border: none;
                 border-top: 1px solid #ddd;
                 margin: 2rem 0 1.5rem 0;
             }
-            
+            /*Aside*/
             aside{
                 position: fixed;
-                top: 0;
+                flex: 1;
+                top: 92px;
                 right: 0;
                 width: 300px;
-                height: 100vh;
+                height:100vh;
                 padding: 20px;
                 box-sizing: border-box;
                 overflow-y: auto;
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                border-left: 1px solid #e0e0e0;
-                background-color: #fdfdfd;
+                /*border-left: 1px solid #e0e0e0;*/
+               /* background-color: #fdfdfd;*/
+                z-index: 700;
             }
             aside h3 {
                 font-size: 0.8rem;
@@ -155,18 +374,94 @@
                 border-left: 3px solid #0d6efd;
                 background-color: #e7f1ff;
             }
-            
+            /*footer*/
+            .site-footer {
+                text-align: center;
+                padding: 5px;
+                font-size: 14px;
+                color: #888;
+                border-top: 1px solid #ddd;
+                margin-top: 40px;
+            }
+            .footer-container {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .footer-column {
+                text-align: left;
+            }
+            .footer-column h4 {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: rgb(64 71 86);
+            }
+            .footer-column a {
+                display: block;
+                color: rgb(35 39 47);
+                text-decoration: none;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+            .footer-column a:hover {
+                text-decoration: underline;
+            }
+
+
         </style>
     </head>
     <body>
+        <div id="announcement-bar">
+            <span>Join us for React Conf on Oct 7-8. </span>
+            <a href="https://conf.react.dev/" target="_blank" >Learn more.</a>
+        </div>
+        <header class ="topbar">
+            <div class="logo">
+               <figure class="figure-container"><img src="https://www.logo.wine/a/logo/React_(web_framework)/React_(web_framework)-Logo.wine.svg" alt="React Logo">
+                <figcaption>React <code>v19.1</code></figcaption>
+                </figure>
+                </div>
+                <div>  <button class="search-box">
+                    <span class="search-prompt">
+                        <span class="search-icon">🔍</span>
+                        <span>Search</span>
+                    </span>
+                
+                    <span class="search-shortcut">Ctrl K</span>
+                </button></div>
+                <div class="main-nav">
+                    <a href="#">Learn</a>
+                    <a href="#">Reference</a>
+                    <a href="#">Community</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="icon-bar">
+                    <button class="icon-button" id="dark-mode-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer;">
+                        <span class="icon-emoji" id="dark-mode-icon">🌙</span>
+                      </button>
+                      <button class="icon-button" onclick="toggleLanguage()" aria-label="Change Language;"  style="background: none; border: none; cursor: pointer;">
+                        <span class="icon-emoji">🌐</span>
+                      </button>
+                    <button class="icon-button" onclick="window.open('https://github.com/facebook/react/releases', '_blank')" 
+                    style="background: none; border: none; cursor: pointer;">
+                    <img class="icon-emoji" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" 
+                     alt="GitHub" />
+                    </button>
+
+                </div>
+            
+        </header>
+        <div class="containeR">
         <nav>
             <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
             <details>
-                <summary><a href="file:///home/tiranait4/Documents/REACT_DEV/REACT_DOC.html" >Quick Start</a></summary>
+                <summary><a href="REACT_DOC.html">Quick Start</a></summary>
                 <ul>
-                    <li><a href="/home/tiranait4/Documents/REACT_DEV/Tutorial:Tic-Tac-Toe.html">Tutorial: Tic-Tac-Toe</a></li>
-                    <li><a href="">Thinking in React</a></li>
+                    <li><a href="file:///home/tiranait4/Documents/REACT_DEV/Tutorial:Tic-Tac-Toe.html">Tutorial: Tic-Tac-Toe</a></li>
+                    <li><a href="/home/tiranait4/Documents/REACT_DEV/Thinking_in_React.html">Thinking in React</a></li>
                 </ul>
             </details> 
             <details>
@@ -274,6 +569,43 @@
             <img src="https://react.dev/images/docs/s_thinking-in-react_ui.png" alt="Photo1"
             style="width: 300px; height: 400px;display: flex ; justify-content: center; margin: 20px;">
 
+          <footer class="site-footer">
+                <div class="footer-container">
+                    <div class="footer-column">
+                        <h4>Meta Open Source</h4>
+                        <a href="#"><code>Copyright © Meta Platforms, Inc</code></a>
+                        <a href="#"><code>uwu?</code></a>
+                    </div>  
+                <div class="footer-column">
+                    <h4>Learn React</h4>
+                    <a href="#">Quick Start</a>
+                    <a href="#">Installation</a>
+                    <a href="#">Describing the UI</a>
+                    <a href="#">Adding Interactivity</a>
+                    <a href="#">Managing State</a>
+                    <a href="#">Escape Hatches</a> 
+                </div>   
+                <div class="footer-column">
+                    <h4>API Reference</h4>
+                    <a href="#">React APIs</a>
+                    <a href="#">React DOM APIs</a>
+                </div>      
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <a href="#">User Showcase</a>
+                    <a href="#">Join the Community</a>
+                    <a href="#">Code of Conduct</a>
+                    <a href="#">Stack Overflow</a>
+                </div>    
+                <div class="footer-column">
+                    <h4>More</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">React Native</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+          </footer> 
+
         </main>
         <aside>
             <h3>On this page</h3>
@@ -288,73 +620,115 @@
               <li><a href="#where_to_go_from_here">Where to go from here</a></li>
             </ul>
           </aside>
+            </div>
           <script> 
-            function filterMenu(){
-                const input=document.getElementById("menuSearch");
-                const filter= input.value.toLowerCase();
-                const details =document.querySelectorAll("nav details");
-                details.forEach(detail => {
-                    const summary = detail.querySelector("summary");
-                    const summaryText = summary.textContent.toLowerCase();
-                    const items= detail.querySelectorAll("ul li");
-                    let anyVisibleItem= false;
-                    items.forEach((item) =>{
-                        const text = item.textContent.toLowerCase();
-                        if(text.includes(filter)){
-                            item.style.display = "block";
-                            anyVisibleItem = true;
-                            } else {
-                                item.style.display = "none";
-                        }
-                    });
-                    if(summaryText.includes(filter) || anyVisibleItem){
-                        summary.style.display= "block";
-                        detail.style.display = "block";
-                        } else {
-                            summary.style.display = "none";
-                            detail.style.display = "none";
-                            }
-                            });
-                            }    
-
-                //Menu aside
-                            document.addEventListener('DOMContentLoaded', () => {
-                const sections = document.querySelectorAll('main section[id]');
-                const navLinks = document.querySelectorAll('aside ul li a');
-
-                if (sections.length === 0 || navLinks.length === 0) {
-                    console.log("Scrollspy nuk u aktivizua: Nuk u gjetën seksione ose linke.");
-                    return;
-                }
-
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.15
-                };
-
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            navLinks.forEach(link => {
-                                link.classList.remove('active');
-                            });
-
-                            const targetId = entry.target.getAttribute('id');
-                            const activeLink = document.querySelector(`aside ul li a[href="#${targetId}"]`);
-
-                            if (activeLink) {
-                                activeLink.classList.add('active');
-                            }
-                        }
-                    });
-                }, observerOptions);
-
-                sections.forEach(section => {
-                    observer.observe(section);
-                });
+            //Search bar nav
+               function filterMenu(){
+                   const input=document.getElementById("menuSearch");
+                   const filter= input.value.toLowerCase();
+                   const details =document.querySelectorAll("nav details");
+                   details.forEach(detail => {
+                       const summary = detail.querySelector("summary");
+                       const summaryText = summary.textContent.toLowerCase();
+                       const items= detail.querySelectorAll("ul li");
+                       let anyVisibleItem= false;
+                       items.forEach((item) =>{
+                           const text = item.textContent.toLowerCase();
+                           if(text.includes(filter)){
+                               item.style.display = "block";
+                               anyVisibleItem = true;
+                               } else {
+                                   item.style.display = "none";
+                           }
+                       });
+                       if(summaryText.includes(filter) || anyVisibleItem){
+                           summary.style.display= "block";
+                           detail.style.display = "block";
+                           } else {
+                               summary.style.display = "none";
+                               detail.style.display = "none";
+                               }
+                               });
+                               }    
+                   //Menu nav
+                   document.addEventListener('DOMContentLoaded',()=>
+                   {
+                       const navItems= document.querySelectorAll("nav summary ,nav ul li a");
+                       navItems.forEach(item => {
+                           item.addEventListener("click", () => {
+                               navItems.forEach(el=>
+                                   el.classList.remove('nav-active'));
+                                   item.classList.add('nav-active');
+                           });
+                           });
+                       
+                   });
+               
+   
+                   //Menu aside
+                               document.addEventListener('DOMContentLoaded', () => {
+                   const sections = document.querySelectorAll('main section[id]');
+                   const navLinks = document.querySelectorAll('aside ul li a');
+   
+                   if (sections.length === 0 || navLinks.length === 0) {
+                       console.log("Scrollspy nuk u aktivizua: Nuk u gjetën seksione ose linke.");
+                       return;
+                   }
+   
+                   const observerOptions = {
+                       root: null,
+                       rootMargin: '0px',
+                       threshold: 0.15
+                   };
+   
+                   const observer = new IntersectionObserver((entries, observer) => {
+                       entries.forEach(entry => {
+                           if (entry.isIntersecting) {
+                               navLinks.forEach(link => {
+                                   link.classList.remove('active');
+                               });
+   
+                               const targetId = entry.target.getAttribute('id');
+                               const activeLink = document.querySelector(`aside ul li a[href="#${targetId}"]`);
+   
+                               if (activeLink) {
+                                   activeLink.classList.add('active');
+                               }
+                           }
+                       });
+                   }, observerOptions);
+   
+                   sections.forEach(section => {
+                       observer.observe(section);
+                   });
+               });
+               //Topbar main-nav
+               const links= document.querySelectorAll('.topbar .main-nav a');
+               links.forEach(link => {
+                   link.addEventListener('click', () => {
+                       links.forEach(el => el.classList.remove('clicked'));
+                       link.classList.add('clicked');
+                   });
+               });
+               //Dark mode toggle
+               const toggleButton = document.getElementById('dark-mode-toggle');
+               const body = document.body;
+   
+               toggleButton.addEventListener('click', () => {
+                      body.classList.toggle('dark-mode');
+   
+                     // Ndrysho ikonën
+                     if(body.classList.contains('dark-mode')){
+                     toggleButton.textContent = '☀️'; // Dielli kur është dark mode
+                      } else {
+               toggleButton.textContent = '🌙'; // Hëna kur është light mode
+                  }
             });
-            
-         </script>
-    </body>
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+     <script>
+       hljs.highlightAll(); // aktivizon highlight për çdo <pre><code>
+     </script>
+           
+       </body>
 </html>
