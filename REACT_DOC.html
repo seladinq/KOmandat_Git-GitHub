@@ -23,6 +23,13 @@
                 background-color: #4b4848 !important;
                 color: #e0e0e0 !important;
             }
+            .containeR{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 20px;
+            }
 
             /*Announcement BAR*/
             #announcement-bar {
@@ -229,6 +236,7 @@
             }
             nav {
                 position: fixed;
+                flex: 1;
                 top: 92px;
                 left: 0;
                 width: 300px;
@@ -280,23 +288,26 @@
             }    
             nav ul li {
                 margin: 0.4rem 0;
+
             }
             nav ul li a {
                 text-decoration: none;
-                color: #0366d6;
+                color: rgb(64 71 86);
                 font-size: 0.9rem;
                 display: block;
                 padding: 0.25rem 0;
                 transition: color 0.2s ease;
             }
             nav ul li a:hover {
-                color: #0a74da;
-                text-decoration: underline;
+                background-color: #d4d4d4;
+                text-decoration: inherit;
+                border-radius: 6px;
+                padding-left: 2px;
             }
             nav summary.nav-active,
             nav ul li a.nav-active{
-                background-color: #66dafb;
-                color: white;
+                background-color: rgb(182, 227, 248);
+                color: rgb(8 126 164);
                 border-radius: 6px;
             }
             nav hr {
@@ -307,6 +318,7 @@
             /*Aside*/
             aside{
                 position: fixed;
+                flex: 1;
                 top: 92px;
                 right: 0;
                 width: 300px;
@@ -380,11 +392,11 @@
             .footer-column h4 {
                 font-size: 16px;
                 margin-bottom: 10px;
-                color: #333;
+                color: rgb(64 71 86);
             }
             .footer-column a {
                 display: block;
-                color: #aaa;
+                color: rgb(35 39 47);
                 text-decoration: none;
                 margin: 5px 0;
                 font-size: 14px;
@@ -437,6 +449,7 @@
                 </div>
             
         </header>
+        <div class="containeR">
         <nav>
             <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
@@ -963,6 +976,7 @@
                 <li><a href="#Next_Steps">Next Steps    </a></li>      
             </ul>
         </aside>
+        </div>
         <script> 
          //Search bar nav
             function filterMenu(){
@@ -1067,7 +1081,6 @@
                }
          });
          </script>
-         //JavaScript for highlight.js
          <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>
     hljs.highlightAll(); // aktivizon highlight për çdo <pre><code>
