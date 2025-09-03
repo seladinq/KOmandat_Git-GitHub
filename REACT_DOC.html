@@ -4,7 +4,10 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>React Documentation </title>
+        <!--css per pre-code formatting-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
         <style>
+
             html {
                 scroll-behavior: smooth;
                 scroll-padding-top: 20px;
@@ -16,6 +19,18 @@
                 font-family: Arial, sans-serif;
                 margin: 0;
             }
+            html.dark-mode *, body.dark-mode * {
+                background-color: #4b4848 !important;
+                color: #e0e0e0 !important;
+            }
+            .containeR{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
             /*Announcement BAR*/
             #announcement-bar {
                 background-color: #f5f7f8;
@@ -130,10 +145,12 @@
                 align-items: center;
                 justify-content: center;
             }
-            .icon-bar span.icon-emoji {
+            .icon-bar .icon-emoji {
                 font-size: 1.5rem;
                 cursor: pointer;
                 transition: transform 0.2s ease;
+                width: 38px ;
+                height: 36px ;
             }
             .search-box{
                 display: flex;
@@ -191,7 +208,6 @@
 
             main pre{
                 background-color: #ffffff;
-                padding: 16px;
                 border-radius: 12px;
                 overflow-x: auto;
                 font-size: 14px;
@@ -200,8 +216,9 @@
             }
             main pre code{
                 font-family: 'Fira Code','Consolas',monospace;
-                color: #24292f;
+                color: #24292f !important;
                 background: none;
+                background-color: #ffffff !important;
             }    
             /*Nav*/
             #menuSearch {
@@ -219,6 +236,7 @@
             }
             nav {
                 position: fixed;
+                flex: 1;
                 top: 92px;
                 left: 0;
                 width: 300px;
@@ -270,23 +288,26 @@
             }    
             nav ul li {
                 margin: 0.4rem 0;
+
             }
             nav ul li a {
                 text-decoration: none;
-                color: #0366d6;
+                color: rgb(64 71 86);
                 font-size: 0.9rem;
                 display: block;
                 padding: 0.25rem 0;
                 transition: color 0.2s ease;
             }
             nav ul li a:hover {
-                color: #0a74da;
-                text-decoration: underline;
+                background-color: #d4d4d4;
+                text-decoration: inherit;
+                border-radius: 6px;
+                padding-left: 2px;
             }
             nav summary.nav-active,
             nav ul li a.nav-active{
-                background-color: #66dafb;
-                color: white;
+                background-color: rgb(182, 227, 248);
+                color: rgb(8 126 164);
                 border-radius: 6px;
             }
             nav hr {
@@ -297,6 +318,7 @@
             /*Aside*/
             aside{
                 position: fixed;
+                flex: 1;
                 top: 92px;
                 right: 0;
                 width: 300px;
@@ -370,11 +392,11 @@
             .footer-column h4 {
                 font-size: 16px;
                 margin-bottom: 10px;
-                color: #333;
+                color: rgb(64 71 86);
             }
             .footer-column a {
                 display: block;
-                color: #aaa;
+                color: rgb(35 39 47);
                 text-decoration: none;
                 margin: 5px 0;
                 font-size: 14px;
@@ -412,7 +434,7 @@
                     <a href="#">Blog</a>
                 </div>
                 <div class="icon-bar">
-                    <button class="icon-button" onclick="toggleDarkMode()" id="dark-mode-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer;">
+                    <button class="icon-button" id="dark-mode-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; cursor: pointer;">
                         <span class="icon-emoji" id="dark-mode-icon">🌙</span>
                       </button>
                       <button class="icon-button" onclick="toggleLanguage()" aria-label="Change Language;"  style="background: none; border: none; cursor: pointer;">
@@ -420,14 +442,14 @@
                       </button>
                     <button class="icon-button" onclick="window.open('https://github.com/facebook/react/releases', '_blank')" 
                     style="background: none; border: none; cursor: pointer;">
-                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
-                     alt="GitHub" 
-                     style="width: 38px; height: 36px;" />
+                    <img class="icon-emoji" src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" 
+                     alt="GitHub" />
                     </button>
 
                 </div>
             
         </header>
+        <div class="containeR">
         <nav>
             <input type="text" id="menuSearch" placeholder="Search..." onkeyup="filterMenu()">
             <div class="section-title">GET STARTED</div>
@@ -630,14 +652,13 @@
         </p>     
         <pre>
             <code>
-                
-            </code>
               return (
                 &lt;img
                   className="avatar"
                   src={user.imageUrl}
                 /&gt;
               );
+            </code>
         </pre>
         <p>You can put more complex expressions inside the JSX curly braces too, for example, string concatenation:</p>
         <p>In the above example, style={{}} is not a special syntax, but a regular {} object inside the style={ } JSX<br>
@@ -955,6 +976,7 @@
                 <li><a href="#Next_Steps">Next Steps    </a></li>      
             </ul>
         </aside>
+        </div>
         <script> 
          //Search bar nav
             function filterMenu(){
@@ -1045,17 +1067,24 @@
                 });
             });
             //Dark mode toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            darkModeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    darkModeToggle.textContent = 'Light Mode';
-                } else {
-                    darkModeToggle.textContent = 'Dark Mode';
-                }
-            });
-            
+            const toggleButton = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+
+            toggleButton.addEventListener('click', () => {
+                   body.classList.toggle('dark-mode');
+
+                  // Ndrysho ikonën
+                  if(body.classList.contains('dark-mode')){
+                  toggleButton.textContent = '☀️'; // Dielli kur është dark mode
+                   } else {
+            toggleButton.textContent = '🌙'; // Hëna kur është light mode
+               }
+         });
          </script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    hljs.highlightAll(); // aktivizon highlight për çdo <pre><code>
+  </script>
         
     </body>
 </html>
